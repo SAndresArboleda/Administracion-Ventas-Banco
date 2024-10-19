@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const usuarioModel = require('./modelos/usuario');
-const productoModel = require('./modelos/producto');
+const ventaModel = require('./modelos/venta');
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
@@ -20,20 +20,19 @@ sequelize.authenticate()
     console.log("problemas con DB", error);
     
 })
-console.log('Database config:', process.env.DB_HOST, process.env.DB_USER, process.env.DB_PASSWORD);
 
 usuarioModel(sequelize);
-productoModel(sequelize);
+ventaModel(sequelize);
 
-const {Usuario,Producto} = sequelize.models;
+const {Usuario,Venta} = sequelize.models;
 
-Usuario.belongsToMany(Producto, {through: 'UsuarioProducto', timestamps: false});
-Producto.belongsToMany(Usuario, {through: 'UsuarioProducto', timestamps: false});
+Usuario.belongsToMany(Venta, {through: 'UsuarioVenta', timestamps: false});
+Venta.belongsToMany(Usuario, {through: 'UsuarioVenta', timestamps: false});
 
 
 module.exports = {
     ...sequelize.models,
     conn: sequelize,
     Usuario,
-    Producto
+    Venta
 };
