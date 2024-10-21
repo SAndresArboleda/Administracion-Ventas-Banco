@@ -1,11 +1,10 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { Usuario } = require('../../bd/postgresql');
 
 const loginUsuario = async (req, res) => {
   const { correo, contraseña } = req.body;
-  console.log('hola correo:'+ correo);
   
-
   try {
     const usuario = await Usuario.findOne({ where: { correo } });
     if (!usuario) {
@@ -17,11 +16,14 @@ const loginUsuario = async (req, res) => {
       return res.status(401).json({ msg: 'Contraseña incorrecta' });
     }
 
-    return res.status(200).json({ msg: 'Login exitoso', usuario });
+    // Generar el token aquí
+    const token = jwt.sign({ id: usuario.id }, 'tu_secreto', { expiresIn: '1h' });  // Cambia 'tu_secreto' por una clave segura y almacénala en un entorno seguro
 
+    return res.status(200).json({ msg: 'Login exitoso', usuario, token });  // Asegúrate de incluir el token en la respuesta
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
+
 
 module.exports = { loginUsuario };

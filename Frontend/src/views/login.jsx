@@ -1,7 +1,9 @@
 import './login.css';
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+
+
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { login } from '../redux/action';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +15,7 @@ export const Login = () => {
         email: '',
         password: ''
     });
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,16 +29,16 @@ export const Login = () => {
                 navigate('/Admin');
             })
             .catch((error) => {
-                console.log('Error al iniciar sesión:', error);
+                setError(error.response?.data?.msg || 'Error desconocido al iniciar sesión');
             });
     };
 
     return (
-
         <div id="Login">
             <div className='h1Login'>
                 <h1>Iniciar Sesión</h1>
             </div>
+            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Mostrar error */}
             <div className="cuadro">
                 <form className='formulario' onSubmit={handleLogin}>
                     <div className='inputLogin'>

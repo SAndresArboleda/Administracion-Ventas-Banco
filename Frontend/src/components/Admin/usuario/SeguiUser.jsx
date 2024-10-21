@@ -24,7 +24,7 @@ export const SeguiUser = () => {
                 <div style={{ width: '15%' }}>Nombre</div>
                 <div style={{ width: '20%' }}>Correo</div>
                 {/* <div style={{ width: '8%' }}>Contraseña</div> */}
-                <div style={{ width: '15%' }}>Tipo se Usuario</div>
+                <div style={{ width: '15%' }}>Tipo de Usuario</div>
                 <div style={{ width: '20%' }}>Fecha de Venta</div>
                 <div style={{ width: '20%' }}>Fecha de Modificación</div>
             </div>

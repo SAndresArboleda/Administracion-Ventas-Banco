@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 
 const URL = import.meta.env.VITE_URL;
 
@@ -60,7 +59,6 @@ export const login = (userData) => {
         const response = await axios.post(`${URL}/login`, userData);
         const data = response.data;
   
-        // Guardar token en localStorage si lo usas
         if (data.token) {
           localStorage.setItem('token', data.token);
         }
@@ -73,89 +71,11 @@ export const login = (userData) => {
           }
         });
   
-        const navigate = useNavigate();
-        navigate('/Admin');
-        
       } catch (error) {
         console.log(error);
       }
     };
   };
-
-
-
-export const getAllPackage = () => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.get(`${URL}/getAllPackages`);
-            const data = response.data;
-            console.log(data);
-            
-            dispatch({
-                type: "GET_ALL_PACKAGES",
-                payload: data
-            });
-        } catch (error) {
-            console.log(error);
-            alert(error);
-        }
-    };
-};
-export const postPackage = (payload) => {
-    return async(dispatch)=>{
-        try {
-            const response = await axios.post(`${URL}/postPackage`,payload);
-
-            alert("Paquete creado correctamente: " + response.data.id)
-            return dispatch({
-                type:"POST_PACKAGE",
-                payload: response.data.id   
-            })
-        } catch (error) {
-            console.log(error);
-            alert("Producto no creado")
-            
-        }
-    }
-}
-
-
-export const getUser = (email, password) => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.get(`${URL}/getUser`, {
-                email,
-                password
-            });
-            const data = response.data;
-            dispatch({
-                type: "GET_ALL_USERS",
-                payload: data
-            });
-        } catch (error) {
-            console.log(error);
-            alert(error);
-        }
-    };
-};
-export const postUser = (payload) =>{
-    return async(dispatch)=>{
-        try {
-            const response = await axios.post(`${URL}/postUser`, payload);
-            alert("Usuario crado correctamente: " + response.data.id)
-            return dispatch({
-                type: "POST_USER",
-                payload: response.data.id
-            })
-        } catch (error) {
-            console.log(error);
-            alert("Usuario no creado")
-        }
-    }
-}
-
-
-
 
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { Login } from './views/logina';
+import { Login } from './views/login';
 import { ProductAdm } from './components/Admin/product/ProductAdm';
-import { UsersAdm } from './components/Admin/usuer/UsersAdm';
+import { UsersAdm } from './components/Admin/usuario/UsersAdm';
 
 function App() {
 
@@ -9,11 +9,12 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Login/>}/>
+
         <Route path="/admin" element={<ProductAdm />} />
-        <Route path="/admin/users" element={<UsersAdm/>} /> 
-      
+        <Route path="/admin/users" element={<UsersAdm/>} />
         
-        <Route path="/login" element={<Login/>} />
+        <Route path="/asesor/ventas" element={<UsersAdm/>} />
+      
       </Routes>
     </div>
   )
