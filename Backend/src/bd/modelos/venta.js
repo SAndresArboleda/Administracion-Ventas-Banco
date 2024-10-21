@@ -27,24 +27,17 @@ module.exports = (sequelize) => {
             }
         },
         franquicia: {
-            type: DataTypes.ENUM("AMEX", "VISA", "MASTERCARD")
+            type: DataTypes.ENUM("AMEX", "VISA", "MASTERCARD", ""),
+            allowNull: true
         },
         tasa: {
             type: DataTypes.DECIMAL(4, 2),
-            allowNull: false,
+            allowNull: true,
             validate: {
                 min: 0,
                 max: 99.99
             }
         },
-        // usuarioId:{
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: Usuario,
-        //         key: "id"
-        //     },
-        //     allowNull: true
-        // }
 
 
     },

@@ -1,6 +1,6 @@
 const { Venta } = require("../../bd/postgresql")
 
-const buscarTodosusuarioVentas = async (req, res) => {
+const buscarVentas = async (req, res) => {
     const { } = req.query
     try {
         const response = await Venta.findAll()
@@ -20,4 +20,4 @@ const buscarVentaId =async(req, res)=>{
     }
 }
 
-module.exports = { buscarTodosusuarioVentas,buscarVentaId }
+module.exports = { buscarVentas,buscarVentaId }

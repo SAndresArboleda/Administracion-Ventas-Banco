@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#Login{
+    width: 100%;
+    height: 90vh;
+    display: block;
+    justify-items: center;
+    justify-content: center;
+}
+#Login .h1Login{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+#Login .cuadro{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 60vh;
+   
+}
+#Login .cuadro .formulario{
+    width: 25%;
+    height: 60vh;
+    justify-content: center;
+    align-content: center;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 5;
+    font-weight: 200;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #2f2f2f;
+    border-radius: 20px;
+    display: grid;
+}
+
+#Login .txt_field{
+    display: flex;
+    padding: 10px;
+    
+}
+#Login .inputIngreso{
+    border-radius: 3px;
+    margin: 4px;
+    width: 250px;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 20px;
+    
+}
+#Login .icono{
+    font-size: 30px;
+    align-content: center;
+}
+#Login li{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#Login h1{
+    color: #2ed3d3;
+}
+#Login .one{
+    font-size: 10px;
+}
+#Login .two{
+   color: #2ed3d3;
+   font-size: 15px;
+}
+#Login .BotonIngreso{
+    display: flex;
+    justify-content: center;
+    margin-left: 29px;
+    border-radius: 3px;
+    margin: 4px;
+    width: 250px;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 20px;
+}
+.BotonIngresar{
+    display: flex;
+    justify-content: center;
+    padding-left: 19px;
+}

@@ -1,0 +1,149 @@
+.navbarSupLogo {
+    font-size: 30px;
+    width: 20%;
+    box-sizing: border-box;
+    padding: 1rem 1rem 1rem 1rem;
+    font-family: sans-serif;
+    font-weight: 1000;
+    background: linear-gradient(90deg, #00ffff, #ff80c3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.navbarSupCont {
+    display: flex;
+    height: 10vh;
+}
+.navbarSupTipos {
+    /* background-color: blueviolet; */
+    width: 60%;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+.adminProdEncabOne {
+    width: 90%;
+    height: 45px;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.adminProd {
+    width: 65%;
+    text-align: left;
+    align-items: center;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    padding-left: 2%;
+}
+
+.adminOpt {
+    /* background-color: #6bb34c; */
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.adminOptSeg {
+    width: 33%;
+    font-family: Roboto, sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    padding: 10px 30px;
+    border: 2px solid #0066cc;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px 8px 8px;
+    transition: 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.adminOptSeg:hover {
+    transition: 1000ms;
+    padding: 10px 25px;
+    transform: translateY(-0px);
+    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+.adminOptCrear {
+    width: 33%;
+    font-family: Roboto, sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(179deg, #0066CC 0%, #c500cc 100%);
+    padding: 10px 30px;
+    border: 2px solid #0066cc;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 8px;
+    transition: 771ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.adminOptCrear:hover {
+    transition: 771ms;
+    padding: 10px 21px;
+    transform: translateY(-0px);
+    background: linear-gradient(179deg, #0066CC 0%, #c500cc 100%);
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+.adminOptModif {
+    width: 33%;
+    font-family: Roboto, sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    padding: 10px 30px;
+    border: 2px solid #0066cc;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 8px 50px 8px 8px;
+    transition: 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    cursor: pointer;
+}
+
+.adminOptModif:hover {
+    transition: 1000ms;
+    padding: 10px 21px;
+    transform: translateY(-0px);
+    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+
+
+.adminProducts {
+    /* background-color: blueviolet; */
+    width: 90%;
+    height: 550px;
+    margin-left: 5%;
+}

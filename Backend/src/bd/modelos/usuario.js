@@ -1,4 +1,3 @@
-const { types } = require("pg");
 const { DataTypes } = require("sequelize")
 
 module.exports = (sequelize) => {
@@ -38,7 +37,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             validate:{
                 len: {
-                    args: [4, 20],
+                    args: [4, 70],
                     msg: 'La contraseña debe ser entre 4 y 20 caracteres'
                 }
             }
@@ -51,3 +50,4 @@ module.exports = (sequelize) => {
     { freezeTableName: true },
 )
 }
+

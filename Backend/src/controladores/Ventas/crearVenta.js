@@ -2,7 +2,8 @@ const { Venta } = require("../../bd/postgresql")
 
 const crearVenta = async(req, res) => {
     const {producto, cupo, franquicia, tasa} = req.body
-    if(producto && cupo && franquicia && tasa)
+    console.log(req.body);
+    if(producto && cupo)
         try {
             const response = await Venta.create({producto, cupo, franquicia, tasa})
             res.status(200).json(response)
@@ -12,3 +13,10 @@ const crearVenta = async(req, res) => {
 }
 
 module.exports = {crearVenta}   
+
+// {
+//     "producto": "Tarjeta de Credito",
+//     "cupo": "8000000",
+//     "franquicia": "AMEX",
+//     "tasa": 10.00
+//     }
