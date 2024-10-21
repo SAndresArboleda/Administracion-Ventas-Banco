@@ -38,7 +38,7 @@ export const Login = () => {
             <div className='h1Login'>
                 <h1>Iniciar Sesión</h1>
             </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Mostrar error */}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className="cuadro">
                 <form className='formulario' onSubmit={handleLogin}>
                     <div className='inputLogin'>

@@ -16,10 +16,10 @@ const loginUsuario = async (req, res) => {
       return res.status(401).json({ msg: 'Contraseña incorrecta' });
     }
 
-    // Generar el token aquí
-    const token = jwt.sign({ id: usuario.id }, 'tu_secreto', { expiresIn: '1h' });  // Cambia 'tu_secreto' por una clave segura y almacénala en un entorno seguro
 
-    return res.status(200).json({ msg: 'Login exitoso', usuario, token });  // Asegúrate de incluir el token en la respuesta
+    const token = jwt.sign({ id: usuario.id }, 'tu_secreto', { expiresIn: '1h' }); 
+
+    return res.status(200).json({ msg: 'Login exitoso', usuario, token });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
