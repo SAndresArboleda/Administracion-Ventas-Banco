@@ -1,10 +1,9 @@
 import './login.css';
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-
-
+import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { login } from '../redux/action';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +15,7 @@ export const Login = () => {
         password: ''
     });
     const [error, setError] = useState('');
+    const [isCaptchaValid, setIsCaptchaValid] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,13 +24,28 @@ export const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch(login(userData))
-            .then(() => {
-                navigate('/Admin');
-            })
-            .catch((error) => {
-                setError(error.response?.data?.msg || 'Error desconocido al iniciar sesión');
-            });
+        if (isCaptchaValid) {
+            dispatch(login(userData))
+                .then(() => {
+                    navigate('/Admin');
+                })
+                .catch((error) => {
+                    setError(error.response?.data?.msg || 'Error desconocido al iniciar sesión');
+                });
+        } else {
+            setError('Por favor, verifica el CAPTCHA.');
+        }
+    };
+
+    const captcha = useRef(null);
+
+    const onChangeCaptcha = () => {
+        const captchaValue = captcha.current.getValue();
+        if (captchaValue) {
+            setIsCaptchaValid(true);
+        } else {
+            setIsCaptchaValid(false);
+        }
     };
 
     return (
@@ -64,8 +79,19 @@ export const Login = () => {
                                 placeholder="Ingresa tu Contraseña"
                             />
                         </div>
+                        <div className='captcha'>
+                            <ReCAPTCHA
+                                ref={captcha}
+                                sitekey='6LeytGcqAAAAAA7Mswa_8IGjdbWcsaXRVv6E_CXo'
+                                onChange={onChangeCaptcha}
+                            />
+                        </div>
                         <div className='BotonIngresar'>
-                            <button className="BotonIngreso" type="submit">
+                            <button
+                                className="BotonIngreso"
+                                type="submit"
+                                disabled={!isCaptchaValid}
+                            >
                                 INICIAR SESION
                             </button>
                         </div>

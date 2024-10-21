@@ -74,6 +74,13 @@
    color: #2ed3d3;
    font-size: 15px;
 }
+
+#Login .captcha{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: 10px;
+}
 #Login .BotonIngreso{
     display: flex;
     justify-content: center;
