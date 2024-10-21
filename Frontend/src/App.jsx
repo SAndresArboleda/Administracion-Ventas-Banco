@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { Login } from './views/login';
 import { ProductAdm } from './components/Admin/product/ProductAdm';
 import { UsersAdm } from './components/Admin/usuario/UsersAdm';
+import { Login } from './views/Login';
 
 function App() {
 

@@ -8,7 +8,7 @@ const crearVenta = async(req, res) => {
             const response = await Venta.create({producto, cupo, franquicia, tasa})
             res.status(200).json(response)
         } catch (error) {
-            res.status(400).send({error: error.message * " no se creo "})
+            res.status(400).send({error: error.message + " no se creo "})
         }
 }
 

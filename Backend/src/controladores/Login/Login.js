@@ -10,16 +10,13 @@ const loginUsuario = async (req, res) => {
     if (!usuario) {
       return res.status(404).json({ msg: 'Usuario no encontrado' });
     }
-
     const contraseñaValida = await bcrypt.compare(contraseña, usuario.contraseña);
     if (!contraseñaValida) {
       return res.status(401).json({ msg: 'Contraseña incorrecta' });
     }
-
-
     const token = jwt.sign({ id: usuario.id }, 'tu_secreto', { expiresIn: '1h' }); 
-
     return res.status(200).json({ msg: 'Login exitoso', usuario, token });
+
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

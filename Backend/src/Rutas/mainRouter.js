@@ -12,7 +12,7 @@ const { loginUsuario } = require('../controladores/Login/Login');
 
 const mainRouter = Router();
 
-mainRouter.get('/login', loginUsuario)
+mainRouter.post('/login', loginUsuario)
 
 mainRouter.post('/crearUsuario', crearUsuario);
 mainRouter.get('/buscarUsuario', buscarTodosUsuario);

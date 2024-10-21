@@ -53,10 +53,12 @@ export const postProduct = (payload) => {
     }
 }
 
-export const login = (userData) => {
+export const login = (user) => {
     return async (dispatch) => {
       try {
-        const response = await axios.post(`${URL}/login`, userData);
+        const response = await axios.post(`${URL}/login`, user);
+        console.log(response);
+        
         const data = response.data;
   
         if (data.token) {
@@ -64,18 +66,19 @@ export const login = (userData) => {
         }
   
         dispatch({
-          type: LOGIN,
+          type: 'LOGIN',
           payload: {
             user: data.user,
             token: data.token
           }
         });
-  
+        return data;
       } catch (error) {
-        console.log(error);
+        console.log("Error en el login:", error);
       }
     };
   };
+  export const LOGIN = "LOGIN"
 
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
@@ -84,4 +87,3 @@ export const POST_PRODUCT = "POST_PRODUCT"
 export const POST_PACKAGE = "POST_PACKAGE"
 export const POST_USER = "POST_USER"
 export const GET_ALL_USERS = "GET_ALL_USERS"
-export const LOGIN = "LOGIN"

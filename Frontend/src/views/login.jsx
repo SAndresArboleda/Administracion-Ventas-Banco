@@ -1,44 +1,43 @@
-import './login.css';
+import './Login.css';
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch } from 'react-redux';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { login } from '../redux/action';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef } from 'react';
 
 export const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
-        email: '',
-        password: ''
+        correo: '',
+        contraseña: ''
     });
     const [error, setError] = useState('');
     const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUserData({ ...userData, [name]: value });
     };
 
-    const handleLogin = (e) => {
+//NO ESTA MOSTRANDO EL ERROR EN PANTALLA CUANDO EL USUARIO NO ES CORRECTO PERO INGRESA SI EL USUARIO ES CORRECTO
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (isCaptchaValid) {
-            dispatch(login(userData))
-                .then(() => {
-                    navigate('/Admin');
-                })
-                .catch((error) => {
-                    setError(error.response?.data?.msg || 'Error desconocido al iniciar sesión');
-                });
-        } else {
-            setError('Por favor, verifica el CAPTCHA.');
+        try {
+            const response = await dispatch(login(userData));
+            if (response?.token && isCaptchaValid) {
+                navigate('/Admin');
+            }
+        } catch (error) {
+            setError(error.response?.data?.msg || 'Error desconocido al iniciar sesión');
         }
     };
 
     const captcha = useRef(null);
-
     const onChangeCaptcha = () => {
         const captchaValue = captcha.current.getValue();
         if (captchaValue) {
@@ -64,8 +63,8 @@ export const Login = () => {
                                 onChange={handleChange}
                                 type="email"
                                 required
-                                name="email"
-                                placeholder="Ingresa tu Email"
+                                name="correo"
+                                placeholder="Ingresa tu correo"
                             />
                         </div>
                         <div className="txt_field">
@@ -75,7 +74,7 @@ export const Login = () => {
                                 onChange={handleChange}
                                 type="password"
                                 required
-                                name="password"
+                                name="contraseña"
                                 placeholder="Ingresa tu Contraseña"
                             />
                         </div>

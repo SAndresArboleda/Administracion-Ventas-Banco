@@ -18,6 +18,15 @@ let initialsState = {
 
 const reducer = (state = initialsState, action) => {
     switch (action.type) {
+        case LOGIN:
+            return {
+                ...state,
+                isAuthenticated: true,
+                user: action.payload.user,
+                token: action.payload.token,
+                error: null
+                
+            };
         case GET_ALL_PRODUCTS:
             return {
                 ...state,
@@ -33,14 +42,6 @@ const reducer = (state = initialsState, action) => {
                 ...state,
                 productId: action.payload
             }
-        case LOGIN:
-            return {
-                ...state,
-                isAuthenticated: true,
-                user: action.payload.user,
-                token: action.payload.token,
-                error: null
-            };
 
 
        default:
