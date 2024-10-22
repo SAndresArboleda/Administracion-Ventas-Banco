@@ -30,6 +30,18 @@ export const CreateProduct = () => {
         e.preventDefault();
         if (Object.keys(errors).length === 0) {
             dispatch(postProduct(newProduct));
+            setNewProduct({
+                producto: "",
+                cupo: "",
+                franquicia: "",
+                tasa: "",
+            });
+            setErrors({
+                producto: "",
+                cupo: "",
+                franquicia: "",
+                tasa: "",
+            });
         }
     };
 

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { SeguiUser } from "./SeguiUser";
 import { CreateUser } from "./CreateUser";
 import { ModifUser } from "./ModifUser";
-
+import { ImExit } from "react-icons/im";
+import './UsersAdm.css'
 
 
 
@@ -27,14 +28,15 @@ export const UsersAdm = () => {
 
 
     return (
-        <div>
+        <div id="ContUsersAdm">
             <div className="navbarSupCont">
-                <Link to='/Admin' className='navbarSupLogo'>
+                <Link to='/admin' className='navbarSupLogo'>
                     KCRM-BANCO
                 </Link>
                 <div className="navbarSupTipos">
                     <Link to='/admin'><div>Productos</div></Link>
                     <div>Usuarios</div>
+                    <Link to='/'><ImExit className="iconoExit" /></Link>
                 </div>
             </div>
             <div className="adminProdEncabOne">

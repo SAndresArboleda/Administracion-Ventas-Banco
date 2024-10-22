@@ -4,6 +4,7 @@ import { useState } from "react"
 import { CreateProduct} from "./CreateProduct";
 import { SeguiProduct } from './SeguiProduct';
 import { ModifProduct } from './ModifProduct';
+import { ImExit } from 'react-icons/im';
 
 
 
@@ -28,14 +29,15 @@ export const ProductAdm = () => {
 
 
     return (
-        <div>
+        <div id='ContProductAdm'>
             <div className="navbarSupCont">
-                <Link to='/Admin' className='navbarSupLogo'>
+                <Link to='/admin' className='navbarSupLogo'>
                     KCRM-BANCO
                 </Link>
                 <div className="navbarSupTipos">
                     <div>Productos</div>
                     <Link to='/admin/users'><div>Usuarios</div></Link>
+                    <Link to='/'><ImExit className="iconoExit" /></Link>
                 </div>
             </div>
             <div className="adminProdEncabOne">

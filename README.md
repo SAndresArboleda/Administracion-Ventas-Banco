@@ -36,3 +36,8 @@ npm start
 npm install
 npm run dev
 ```
+## Ingreso Login 
+``` code:
+correo: and@gmail.com
+constraseña: andAdministrador
+```

@@ -9,7 +9,10 @@ module.exports = (sequelize) => {
             autoIncrement: true,
         },
         producto: {
-            type: DataTypes.ENUM("Credito de Consumo", "Libranza Libre Inversión", "Tarjeta de Credito"),
+            type: DataTypes.ENUM(
+                "Credito de Consumo",
+                "Libranza Libre Inversión",
+                "Tarjeta de Credito"),
             allowNull: false
         },
         cupo: {
@@ -27,7 +30,7 @@ module.exports = (sequelize) => {
             }
         },
         franquicia: {
-            type: DataTypes.ENUM("AMEX", "VISA", "MASTERCARD", ""),
+            type: DataTypes.ENUM("AMEX", "VISA", "MASTERCARD"),
             allowNull: true
         },
         tasa: {

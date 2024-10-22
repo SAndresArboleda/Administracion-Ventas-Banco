@@ -17,14 +17,14 @@ export const Login = () => {
     });
     const [error, setError] = useState('');
     const [isCaptchaValid, setIsCaptchaValid] = useState(false);
-    
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUserData({ ...userData, [name]: value });
     };
 
-//NO ESTA MOSTRANDO EL ERROR EN PANTALLA CUANDO EL USUARIO NO ES CORRECTO PERO INGRESA SI EL USUARIO ES CORRECTO
+    //NO ESTA MOSTRANDO EL ERROR EN PANTALLA CUANDO EL USUARIO NO ES CORRECTO PERO INGRESA SI EL USUARIO ES CORRECTO
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -52,7 +52,6 @@ export const Login = () => {
             <div className='h1Login'>
                 <h1>Iniciar Sesión</h1>
             </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className="cuadro">
                 <form className='formulario' onSubmit={handleLogin}>
                     <div className='inputLogin'>
@@ -93,6 +92,9 @@ export const Login = () => {
                             >
                                 INICIAR SESION
                             </button>
+                        </div>
+                        <div>
+                            {error && <p style={{ color: 'red' }}>{error}</p>}
                         </div>
                     </div>
                 </form>

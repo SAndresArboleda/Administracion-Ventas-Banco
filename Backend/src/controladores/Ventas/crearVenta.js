@@ -1,22 +1,25 @@
-const { Venta } = require("../../bd/postgresql")
+const { Venta } = require("../../bd/postgresql");
 
-const crearVenta = async(req, res) => {
-    const {producto, cupo, franquicia, tasa} = req.body
-    console.log(req.body);
-    if(producto && cupo)
+const crearVenta = async (req, res) => {
+    const { producto, cupo, franquicia, tasa } = req.body;
+
+    if (producto && cupo) {
         try {
-            const response = await Venta.create({producto, cupo, franquicia, tasa})
-            res.status(200).json(response)
+            let nuevaVenta = { producto, cupo, franquicia };
+            if (tasa) {
+                nuevaVenta.tasa = tasa;
+            }
+            const response = await Venta.create(nuevaVenta);
+            console.log(response);
+
+            res.status(200).json(response);
         } catch (error) {
-            res.status(400).send({error: error.message + " no se creo "})
+            res.status(400).send({ error: error.message + " no se creó la venta" });
         }
-}
+    } else {
+        res.status(400).send({ error: "Faltan campos obligatorios: producto y cupo" });
+    }
+};
 
-module.exports = {crearVenta}   
-
-// {
-//     "producto": "Tarjeta de Credito",
-//     "cupo": "8000000",
-//     "franquicia": "AMEX",
-//     "tasa": 10.00
-//     }
+module.exports = { crearVenta };
+ 

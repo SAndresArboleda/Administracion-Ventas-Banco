@@ -74,7 +74,9 @@ export const login = (user) => {
         });
         return data;
       } catch (error) {
-        console.log("Error en el login:", error);
+        console.log(error, "Error en el login");
+        alert('Error en email o contraseña')
+        return (error)
       }
     };
   };
