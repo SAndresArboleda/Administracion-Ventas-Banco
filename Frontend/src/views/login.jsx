@@ -24,7 +24,6 @@ export const Login = () => {
         setUserData({ ...userData, [name]: value });
     };
 
-    //NO ESTA MOSTRANDO EL ERROR EN PANTALLA CUANDO EL USUARIO NO ES CORRECTO PERO INGRESA SI EL USUARIO ES CORRECTO
     const handleLogin = async (e) => {
         e.preventDefault();
         try {

@@ -12,10 +12,5 @@ export const registerValidation = ({ correo,contraseña }) => {
     // if (contraseña.length < 6) { errors.contraseña = "Debe tener al menos 6 caracteres" }
     if (!contraseña.length) errors.contraseña = "La Contraseña es obligatoria"
 
-
-    // //IMAGE
-    // // if (!regexImg.test(img))
-    // //   errors.image = "permite solo archivos con extensión jpg o jpeg.";
-
     return errors;
 };
