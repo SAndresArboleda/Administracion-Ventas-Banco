@@ -53,8 +53,12 @@ Nota: En tu base de datos ingresa un usuario como Administrador y otro como Ases
 }
 ```
 
-## Ingreso Login 
+## Script Base de datos
 ``` code:
-correo: and@gmail.com
-constraseña: andAdministrador
+DB_USER=postgres
+DB_PASSWORD=1234
+DB_HOST=localhost
+PORT=3003
+DB_NAME=banco
+JWT_SECRET=1234
 ```
