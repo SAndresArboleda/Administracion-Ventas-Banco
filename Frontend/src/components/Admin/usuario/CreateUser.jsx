@@ -79,7 +79,7 @@ export const CreateUser = () => {
             </div>
             <div className="label1">
                 <label>Contraseña</label>
-                <input type="text" name='contraseña' value={newUser.contraseña}
+                <input type="password" name='contraseña' value={newUser.contraseña}
                     onChange={handleChange} placeholder="ingresa contraseña" />
                 {errors.contraseña && <label>{errors.contraseña}</label>}
             </div>

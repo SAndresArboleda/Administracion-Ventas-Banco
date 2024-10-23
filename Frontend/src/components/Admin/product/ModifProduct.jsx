@@ -68,19 +68,15 @@ export const ModifProduct = () => {
     };
 
     const handleCupoChange = ({ target }) => {
-        let value = target.value.replace(/\./g, '');
 
-        if (!/^\d*$/.test(value)) return;
-        const formattedValue = new Intl.NumberFormat('de-DE').format(value);
 
         setNewProduct((prevProduct) => ({
             ...prevProduct,
-            cupo: formattedValue
+            cupo: target.value
         }));
 
         setErrors(validationProduct({
             ...newProduct,
-            cupo: value
         }));
     };
 
