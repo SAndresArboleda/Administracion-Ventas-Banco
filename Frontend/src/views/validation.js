@@ -1,16 +1,16 @@
-export const registerValidation = ({ email,password }) => {
+export const registerValidation = ({ correo,contraseña }) => {
     const errors = {};
 
 
     // //EMAIL
-    if (!/\S+@\S+\.\S+/.test(email)) { errors.email = "Debe contener @ y .com" }
-    if (email.length > 30) { errors.email = "Debe ser menor a 30 caracteres." }
-    if (!email.length) { errors.email = "El Email es obligatorio" }
+    if (!/\S+@\S+\.\S+/.test(correo)) { errors.correo = "Debe contener @ y .com" }
+    // if (correo.length > 30) { errors.correo = "Debe ser menor a 30 caracteres." }
+    // if (!correo.length) { errors.correo = "El correo es obligatorio" }
 
-    // //PASSWORD
-    if (password.length > 1 & !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(password)) errors.password = 'Debe contener Aa2*'
-    if (password.length < 6) { errors.password = "Debe tener al menos 6 caracteres" }
-    if (!password.length) errors.password = "La Contraseña es obligatoria"
+    // //CONTRASEÑA
+    // if (contraseña.length > 1 & !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(contraseña)) errors.contraseña = 'Debe contener Aa2*'
+    // if (contraseña.length < 6) { errors.contraseña = "Debe tener al menos 6 caracteres" }
+    if (!contraseña.length) errors.contraseña = "La Contraseña es obligatoria"
 
 
     // //IMAGE

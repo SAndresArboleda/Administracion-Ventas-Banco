@@ -11,8 +11,8 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             validate: {
                 len: {
-                    args: [3, 50],
-                    msg: 'El nombre debe ser entre 3 y 50 caracteres'
+                    max: 50,
+                    msg: 'El nombre es máximo de 50 caracteres'
                 },
                 isAlpha: {
                     msg: 'El nombre solo puede tener letras'
@@ -28,8 +28,8 @@ module.exports = (sequelize) => {
                     msg: 'El correo debe tener @ y .com',
                 },
                 len: {
-                    args: [3, 50],
-                    msg: 'El correo debe ser entre 3 y 50 caracteres'
+                    max: 50,
+                    msg: 'El correo debe ser máximo de 50 caracteres'
                 },
             },
         },
@@ -37,8 +37,8 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             validate:{
                 len: {
-                    args: [4, 70],
-                    msg: 'La contraseña debe ser entre 4 y 20 caracteres'
+                    max: 70,
+                    msg: 'La contraseña debe ser maáximo de 20 caracteres'
                 }
             }
         },

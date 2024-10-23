@@ -29,8 +29,12 @@ export const Login = () => {
         e.preventDefault();
         try {
             const response = await dispatch(login(userData));
-            if (response?.token && isCaptchaValid) {
-                navigate('/Admin');
+            
+            if (response?.token && isCaptchaValid && response.usuario.tipoUsuario === "Administrador") {
+                navigate('/admin');
+            }
+            if (response?.token && isCaptchaValid && response.usuario.tipoUsuario === "Asesor") {
+                navigate('/asesor');
             }
         } catch (error) {
             setError(error.response?.data?.msg || 'Error desconocido al iniciar sesión');

@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../redux/action";
 
 
-
-
-
 export const SeguiUser = () => {
 
     const dispatch = useDispatch()
@@ -30,7 +27,7 @@ export const SeguiUser = () => {
             </div>
             <div className="adminProdScroll">
                 {allUsers.map((ele, index) => (
-                    <div className="ProductosAdm" key={ele._id}>
+                    <div className="ProductosAdm" key={ele.id}>
                         <div style={{ width: '3%' }}>{index + 1}</div>
                         <div style={{ width: '5%' }}>{ele.id}</div>
                         <div style={{ width: '15.5%' }}>{ele.nombre}</div>

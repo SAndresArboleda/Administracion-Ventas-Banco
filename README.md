@@ -38,6 +38,23 @@ npm run dev
 ```
 ## Ingreso Login 
 ``` code:
+Nota: En tu base de datos ingresa un usuario como Administrador y otro como Asesor para poder explorar el front
+{
+"nombre": And
+"correo": and@gmail.com
+"constraseña": and
+"tipoUsuario": Administrador
+}
+{
+"nombre": Sim
+"correo": sim@gmail.com
+"constraseña": sim
+"tipoUsuario": Asesor
+}
+```
+
+## Ingreso Login 
+``` code:
 correo: and@gmail.com
 constraseña: andAdministrador
 ```

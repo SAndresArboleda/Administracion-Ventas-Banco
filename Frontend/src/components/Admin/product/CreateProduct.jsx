@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { postProduct } from "../../../redux/action";
 import { useDispatch } from 'react-redux';
-import { validation } from "./validation";
 import './CreateProduct.css';
+import { validationProduct } from "./validation";
 
 export const CreateProduct = () => {
 
@@ -23,7 +23,7 @@ export const CreateProduct = () => {
     });
 
     useEffect(() => {
-        setErrors(validation(newProduct));
+        setErrors(validationProduct(newProduct));
     }, [newProduct]);
 
     const handleCreation = (e) => {
@@ -61,7 +61,7 @@ export const CreateProduct = () => {
             return updatedProduct;
         });
 
-        setErrors(validation({
+        setErrors(validationProduct({
             ...newProduct,
             [name]: value
         }));

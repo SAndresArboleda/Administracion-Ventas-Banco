@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ProductAdm } from './components/Admin/product/ProductAdm';
 import { UsersAdm } from './components/Admin/usuario/UsersAdm';
 import { Login } from './views/Login';
+import { VentasAsesor } from './components/Usuario/product/ProductAdm';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
         <Route path="/admin" element={<ProductAdm />} />
         <Route path="/admin/users" element={<UsersAdm/>} />
         
-        <Route path="/asesor/ventas" element={<UsersAdm/>} />
+        <Route path="/asesor" element={<VentasAsesor/>} />
       
       </Routes>
     </div>

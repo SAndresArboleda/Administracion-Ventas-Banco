@@ -1,122 +1,100 @@
 import { useEffect, useState } from "react";
-import { postProduct } from "../../../redux/action";
 import { useDispatch } from 'react-redux';
-import { validation } from "./validation";
 import './CreateUser.css';
+import { postUser } from "../../../redux/action";
+import { validationUser } from "./validation";
 
 export const CreateUser = () => {
 
     const dispatch = useDispatch();
 
-    const [newProduct, setNewProduct] = useState({
-        producto: "",
-        cupo: "",
-        franquicia: "",
-        tasa: "",
+    const [newUser, setNewUser] = useState({
+        nombre: "",
+        correo: "",
+        contraseña: "",
+        tipoUsuario: "",
     });
 
     const [errors, setErrors] = useState({
-        producto: "",
-        cupo: "",
-        franquicia: "",
-        tasa: "",
+        nombre: "",
+        correo: "",
+        contraseña: "",
+        tipoUsuario: "",
     });
 
     useEffect(() => {
-        setErrors(validation(newProduct));
-    }, [newProduct]);
+        setErrors(validationUser(newUser));
+    }, [newUser]);
 
     const handleCreation = (e) => {
         e.preventDefault();
         if (Object.keys(errors).length === 0) {
-            dispatch(postProduct(newProduct));
+            dispatch(postUser(newUser));
+            setNewUser({
+                nombre: "",
+                correo: "",
+                contraseña: "",
+                tipoUsuario: "",
+            });
+            setErrors({
+                nombre: "",
+                correo: "",
+                contraseña: "",
+                tipoUsuario: "",
+            });
         }
     };
 
     const handleChange = ({ target }) => {
-        const { name, value } = target;
-
-        setNewProduct((prevProduct) => {
-            let updatedProduct = { ...prevProduct, [name]: value };
-
-            if (name === 'producto' && value !== 'Tarjeta de Credito') {
-                updatedProduct.franquicia = '';
-            }
-            if (name === 'producto' && value === 'Tarjeta de Credito') {
-                updatedProduct.tasa =  '';
-            }
-
-            return updatedProduct;
-        });
-
-        setErrors(validation({
-            ...newProduct,
-            [name]: value
+            setErrors(validationUser({
+            ...newUser
         }));
-    };
+        setNewUser({
+            ...newUser,
+            [target.name]: target.value
 
-    const renderFranquicia = () => {
-        if (newProduct.producto === "Tarjeta de Credito") {
-            return (
-                <div>
-                    <label className="label3">Franquicia</label>
-                    <select
-                        name="franquicia"
-                        id="franquicia"
-                        value={newProduct.franquicia}
-                        onChange={handleChange}
-                    >
-                        <option value="">Selecciona un Franquicia...</option>
-                        <option value="AMEX">Amex</option>
-                        <option value="VISA">Visa</option>
-                        <option value="MASTERCARD">Mastercad</option>
-                    </select>
-                    {errors.franquicia && <label>{errors.franquicia}</label>}
-                </div>
-            );
-        }
-        return null;
-    };
+        })
 
-    const renderTasa = () => {
-        if (newProduct.producto !== "Tarjeta de Credito") {
-            return (
-                <div>
-                <label className="label4">Tasa</label>
-                <input type="text" name='tasa' value={newProduct.tasa}
-                    onChange={handleChange} placeholder="ingresa tasa" />
-                {errors.tasa && <label>{errors.tasa}</label>}
-            </div>
-            );
-        }
-        return null;
     };
 
     return (
-        <div id="ContCrear">
+        <div id="ContCrearUser">
             <div>
-                <label className="label1">Nombre del Producto</label>
-                <select name="producto" id="producto" value={newProduct.producto}
-                    onChange={handleChange}>
-                    <option value="">Selecciona un producto...</option>
-                    <option value="Credito de Consumo">Credito de Consumo</option>
-                    <option value="Libranza Libre Inversión">Libranza Libre Inversión</option>
-                    <option value="Tarjeta de Credito">Tarjeta de Credito</option>
-                </select>
-                {errors.producto && <label>{errors.producto}</label>}
+            <div className="label1">
+                <label>Nombre</label>
+                <input type="text" name='nombre' value={newUser.nombre}
+                    onChange={handleChange} placeholder="ingresa Nombre" />
             </div>
-            <div>
-                <label className="label2">Cupo</label>
-                <input type="number" name='cupo' value={newProduct.cupo}
-                    onChange={handleChange} placeholder="ingresa Cupo" />
-                {errors.cupo && <label>{errors.cupo}</label>}
-            </div>
-            {renderFranquicia()}
-            {renderTasa()}
+            {errors.nombre &&<label className="errorUser">{errors.nombre}</label>}
 
+            </div>
+            <div>
+            <div className="label1">
+                <label>Correo</label>
+                <input type="email" name='correo' value={newUser.correo}
+                    onChange={handleChange} placeholder="ingresa correo" />
+            </div>
+                {errors.correo && <label>{errors.correo}</label>}
+
+            </div>
+            <div className="label1">
+                <label>Contraseña</label>
+                <input type="text" name='contraseña' value={newUser.contraseña}
+                    onChange={handleChange} placeholder="ingresa contraseña" />
+                {errors.contraseña && <label>{errors.contraseña}</label>}
+            </div>
+            <div className="label1">
+                <label>Tipo de Usuario</label>
+                <select name="tipoUsuario" id="tipoUsuario" value={newUser.tipoUsuario} onChange={handleChange}>
+                    <option value="">Selecciona un tipo...</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Asesor">Asesor</option>
+                </select>
+                {errors.tipoUsuario && <label>{errors.tipoUsuario}</label>}
+            </div>
             <div>
                 <button type="submit" onClick={handleCreation} disabled={Object.keys(errors).length > 0}>
-                    Crear nuevo Producto
+                    Crear nuevo Usuario
                 </button>
             </div>
         </div>

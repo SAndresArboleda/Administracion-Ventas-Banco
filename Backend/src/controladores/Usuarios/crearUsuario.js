@@ -1,13 +1,12 @@
 const bcrypt = require('bcrypt');
 const { Usuario } = require("../../bd/postgresql");
+const usuario = require('../../bd/modelos/usuario');
 
 const crearUsuario = async (req, res) => {
     const { nombre, correo, contraseña, tipoUsuario } = req.body;
 
-    // Verificar si todos los campos requeridos están presentes
     if (nombre && correo && contraseña && tipoUsuario) {
         try {
-            // Comprobar si el correo ya está registrado
             const usuarioExistente = await Usuario.findOne({ where: { correo } });
             if (usuarioExistente) {
                 return res.status(400).json({ error: 'El correo ya está registrado.' });
@@ -24,30 +23,19 @@ const crearUsuario = async (req, res) => {
                 contraseña: contraseñaEncriptada,
                 tipoUsuario
             });
-
-            // Responder con éxito
-            res.status(201).json({
+            
+            return res.status(201).json({
                 msg: 'Usuario creado exitosamente',
                 usuario: nuevoUsuario
             });
+            
 
         } catch (error) {
-            // Enviar una respuesta de error
             res.status(400).send({ error: error.message + " no se pudo crear el usuario" });
         }
     } else {
-        // Responder si faltan parámetros
         return res.status(400).json({ error: 'Todos los campos son requeridos: nombre, correo, contraseña, tipoUsuario.' });
     }
 };
 
 module.exports = { crearUsuario };
-
-
-// {
-//     "id": 5,
-//     "nombre": "Son",
-//     "correo": "son@gmail.com",
-//     "contraseña": "sonAsesor",
-//     "tipoUsuario": "Asesor"
-//   }
