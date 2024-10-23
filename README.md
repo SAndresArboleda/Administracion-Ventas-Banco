@@ -12,12 +12,12 @@ Sistema de Logeo y generación de un Crud.
         <img width="110" src= "https://img.shields.io/github/followers/SAndresArboleda" >
     </a>
     <img width="65" src= "https://img.shields.io/badge/Javascrip-yellow" >
-    <img width="93" src= "https://img.shields.io/badge/React 18.2.0-blue" >
-    <img width="48" src= "https://img.shields.io/badge/Redux-orange" >
     <img width="80" src= "https://img.shields.io/badge/Axios 1.6.7-gray" >
-    <img width="42" src= "https://img.shields.io/badge/HTML-red" >
-    <img width="35" src= "https://img.shields.io/badge/CSS-darkblue" >
+    <img width="93" src= "https://img.shields.io/badge/React 18.2.0-blue" >
+    <img width="145" src= "https://img.shields.io/badge/React Redux 18.05.0-orange" >
     <img width="100" src= "https://img.shields.io/badge/Node 20.11.0-gray" >
+    <img width="48" src= "https://img.shields.io/badge/HTML-red" >
+    <img width="40" src= "https://img.shields.io/badge/CSS-darkblue" >
 </div>
 
 <br>
@@ -61,4 +61,9 @@ DB_HOST=localhost
 PORT=3003
 DB_NAME=banco
 JWT_SECRET=1234
+```
+
+## Version Node
+``` code:
+20.11.0
 ```

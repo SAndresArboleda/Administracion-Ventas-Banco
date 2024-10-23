@@ -55,7 +55,7 @@ export const CreateProduct = () => {
                 updatedProduct.franquicia = '';
             }
             if (name === 'producto' && value === 'Tarjeta de Credito') {
-                updatedProduct.tasa =  '';
+                updatedProduct.tasa = '';
             }
 
             return updatedProduct;
@@ -64,6 +64,23 @@ export const CreateProduct = () => {
         setErrors(validationProduct({
             ...newProduct,
             [name]: value
+        }));
+    };
+
+    const handleCupoChange = ({ target }) => {
+        let value = target.value.replace(/\./g, '');
+
+        if (!/^\d*$/.test(value)) return;
+        const formattedValue = new Intl.NumberFormat('de-DE').format(value);
+
+        setNewProduct((prevProduct) => ({
+            ...prevProduct,
+            cupo: formattedValue
+        }));
+
+        setErrors(validationProduct({
+            ...newProduct,
+            cupo: value
         }));
     };
 
@@ -78,10 +95,10 @@ export const CreateProduct = () => {
                         value={newProduct.franquicia}
                         onChange={handleChange}
                     >
-                        <option value="">Selecciona un Franquicia...</option>
+                        <option value="">Selecciona una Franquicia...</option>
                         <option value="AMEX">Amex</option>
                         <option value="VISA">Visa</option>
-                        <option value="MASTERCARD">Mastercad</option>
+                        <option value="MASTERCARD">Mastercard</option>
                     </select>
                     {errors.franquicia && <label>{errors.franquicia}</label>}
                 </div>
@@ -94,11 +111,11 @@ export const CreateProduct = () => {
         if (newProduct.producto !== "Tarjeta de Credito") {
             return (
                 <div>
-                <label className="label4">Tasa</label>
-                <input type="text" name='tasa' value={newProduct.tasa}
-                    onChange={handleChange} placeholder="ingresa tasa" />
-                {errors.tasa && <label>{errors.tasa}</label>}
-            </div>
+                    <label className="label4">Tasa</label>
+                    <input type="text" name='tasa' value={newProduct.tasa}
+                        onChange={handleChange} placeholder="ingresa tasa" />
+                    {errors.tasa && <label>{errors.tasa}</label>}
+                </div>
             );
         }
         return null;
@@ -111,16 +128,16 @@ export const CreateProduct = () => {
                 <select name="producto" id="producto" value={newProduct.producto}
                     onChange={handleChange}>
                     <option value="">Selecciona un producto...</option>
-                    <option value="Credito de Consumo">Credito de Consumo</option>
+                    <option value="Credito de Consumo">Crédito de Consumo</option>
                     <option value="Libranza Libre Inversión">Libranza Libre Inversión</option>
-                    <option value="Tarjeta de Credito">Tarjeta de Credito</option>
+                    <option value="Tarjeta de Credito">Tarjeta de Crédito</option>
                 </select>
                 {errors.producto && <label>{errors.producto}</label>}
             </div>
             <div>
                 <label className="label2">Cupo</label>
-                <input type="number" name='cupo' value={newProduct.cupo}
-                    onChange={handleChange} placeholder="ingresa Cupo" />
+                <input type="text" name='cupo' value={newProduct.cupo}
+                    onChange={handleCupoChange} placeholder="ingresa Cupo" />
                 {errors.cupo && <label>{errors.cupo}</label>}
             </div>
             {renderFranquicia()}
