@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ProductAdm } from './components/Admin/product/ProductAdm';
 import { UsersAdm } from './components/Admin/usuario/UsersAdm';
 import { VentasAsesor } from './components/Usuario/product/ProductAdm';
-import { Login } from './views/Loginnd';
+import { Login } from './views/Login';
 
 function App() {
 
