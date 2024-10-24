@@ -95,6 +95,22 @@ export const postUser = (payload) => {
         }
     }
 }
+export const getProductById = (id) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${URL}/buscarVenta/${id}`);
+            const data = response.data;
+            console.log(response);
+            dispatch({
+                type: "GET_PRODUCT_ID",
+                payload: data
+            });
+        } catch (error) {
+            console.log(error);
+            alert(error);
+        }
+    };
+};
 
 
   
@@ -104,3 +120,4 @@ export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
 export const GET_ALL_USERS = "GET_ALL_USERS"
 export const POST_PRODUCT = "POST_PRODUCT"
 export const POST_USER = "POST_USER"
+export const GET_PRODUCT_ID = "GET_PRODUCT_ID"

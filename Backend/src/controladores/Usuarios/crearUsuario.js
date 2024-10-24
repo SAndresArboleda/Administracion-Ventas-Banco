@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const { Usuario } = require("../../bd/postgresql");
-const usuario = require('../../bd/modelos/usuario');
 
 const crearUsuario = async (req, res) => {
     const { nombre, correo, contraseña, tipoUsuario } = req.body;

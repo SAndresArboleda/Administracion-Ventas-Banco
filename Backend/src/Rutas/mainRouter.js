@@ -1,4 +1,5 @@
 const {Router} = require('express');
+
 const { crearUsuario } = require('../controladores/Usuarios/crearUsuario');
 const { buscarTodosUsuario, buscarUsuarioId } = require('../controladores/Usuarios/buscarUsuario');
 const { actualizarUsuario } = require('../controladores/Usuarios/actualizarUsuario');

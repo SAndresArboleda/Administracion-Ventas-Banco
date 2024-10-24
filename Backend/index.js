@@ -1,6 +1,6 @@
 require('dotenv').config();
-const server = require('./src/app')
-const {conn} = require('./src/bd/postgresql')
+const server = require('./src/app');
+const { conn } = require('./src/bd/postgresql');
 
 
 conn.sync({force: false})

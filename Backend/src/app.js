@@ -1,8 +1,8 @@
 const express = require("express");
+const app = express();
+const mainRouter = require("./Rutas/mainRouter");
 const morgan = require("morgan");
 const cors = require('cors');
-const mainRouter = require("./Rutas/mainRouter");
-const app = express();
 
 app.use(cors());
 app.use(morgan("dev"))
