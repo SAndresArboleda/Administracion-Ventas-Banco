@@ -53,7 +53,7 @@ export const UsersAdm = () => {
                 </div>
             </div>
 
-            <div className="adminProducts">
+            <div className="adminVentas">
                 {option.main ? < SeguiUser /> : null}
                 {option.add ? < CreateUser /> : null}
                 {option.setting ? < ModifUser /> : null}

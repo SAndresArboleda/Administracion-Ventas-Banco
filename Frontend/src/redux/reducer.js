@@ -15,7 +15,7 @@ let initialsState = {
     user: null,
     token: null,
     error: null,
-    allProducts: [],
+    allVentas: [],
     allUsers: [],
     login: [],
     postproduct: [],
@@ -37,7 +37,7 @@ const reducer = (state = initialsState, action) => {
         case GET_ALL_PRODUCTS:
             return {
                 ...state,
-                allProducts: action.payload
+                allVentas: action.payload
             }
         case GET_ALL_USERS:
             return {

@@ -27,7 +27,7 @@ export const login = (user) => {
       }
     };
   };
-export const getAllProducts = () => {
+export const getAllVentas = () => {
     return async (dispatch) => {
         try {
             const response = await axios.get(`${URL}/buscarVenta`);
@@ -43,25 +43,25 @@ export const getAllProducts = () => {
         }
     };
 };
-export const postProduct = (payload) => {
+export const postVenta = (payload) => {
     return async(dispatch)=>{
         try {
             const response = await axios.post(`${URL}/crearVenta`,payload);
             console.log(response);
             
-            alert("Producto creado correctamente: " + response.data.response.id)
+            alert("Venta creado correctamente: " + response.data.response.id)
             return dispatch({
                 type:"POST_PRODUCT",
                 payload: response.data
             })
         } catch (error) {
             console.log(error);
-            alert("Producto no creado")
+            alert("Venta no creado")
             
         }
     }
 }
-export const getProductById = (id) => {
+export const getVentaById = (id) => {
     return async (dispatch) => {
         try {
             const response = await axios.get(`${URL}/buscarVenta/${id}`);

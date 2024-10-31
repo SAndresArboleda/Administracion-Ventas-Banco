@@ -1,4 +1,4 @@
-#ContProductAdm .iconoExit{
+#ContVentaAdm .iconoExit{
     width: 30px;
     height: 30px;
     color: #738d88;
@@ -6,7 +6,7 @@
     box-sizing: content-box;
 
 }
-#ContProductAdm .iconoExit:hover{
+#ContVentaAdm .iconoExit:hover{
     color: #034e3f;
     width: 40px;
     height: 40px;

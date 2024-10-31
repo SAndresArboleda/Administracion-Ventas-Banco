@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { postProduct } from "../../../redux/action";
+import { postVenta } from "../../../redux/action";
 import { useDispatch } from 'react-redux';
-import './CreateProduct.css';
-import { validationProduct } from "./validation";
+import './CreateVenta.css';
+import { validationVenta } from "./validation";
 
-export const CreateProduct = () => {
+export const CreateVenta = () => {
 
     const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ export const CreateProduct = () => {
     const userStorage = JSON.parse(storedUser);
     const IdUser = userStorage.usuario.id
 
-    const [newProduct, setNewProduct] = useState({
+    const [newVenta, setNewVenta] = useState({
         producto: "",
         cupo: "",
         franquicia: "",
@@ -32,14 +32,14 @@ export const CreateProduct = () => {
    
 
     useEffect(() => {
-        setErrors(validationProduct(newProduct));
-    }, [newProduct]);
+        setErrors(validationVenta(newVenta));
+    }, [newVenta]);
 
     const handleCreation = (e) => {
         e.preventDefault();
         if (Object.keys(errors).length === 0) {
-            dispatch(postProduct(newProduct));
-            setNewProduct({
+            dispatch(postVenta(newVenta));
+            setNewVenta({
                 producto: "",
                 cupo: "",
                 franquicia: "",
@@ -59,41 +59,41 @@ export const CreateProduct = () => {
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
-        setNewProduct((prevProduct) => {
-            let updatedProduct = { ...prevProduct, [name]: value };
+        setNewVenta((prevVenta) => {
+            let updatedVenta = { ...prevVenta, [name]: value };
             if (name === 'producto' && value !== 'Tarjeta de Credito') {
-                updatedProduct.franquicia = '';
+                updatedVenta.franquicia = '';
             }
             if (name === 'producto' && value === 'Tarjeta de Credito') {
-                updatedProduct.tasa = '';
+                updatedVenta.tasa = '';
             }
-            return updatedProduct;
+            return updatedVenta;
         });
-        setErrors(validationProduct({
-            ...newProduct,
+        setErrors(validationVenta({
+            ...newVenta,
             [name]: value
         }));
     };
 
     const handleCupoChange = ({ target }) => {
-        setNewProduct((prevProduct) => ({
-            ...prevProduct,
+        setNewVenta((prevVenta) => ({
+            ...prevVenta,
             cupo: target.value
         }));
-        setErrors(validationProduct({
-            ...newProduct,
+        setErrors(validationVenta({
+            ...newVenta,
         }));
     };
 
     const renderFranquicia = () => {
-        if (newProduct.producto === "Tarjeta de Credito") {
+        if (newVenta.producto === "Tarjeta de Credito") {
             return (
                 <div>
                     <label className="label3">Franquicia</label>
                     <select
                         name="franquicia"
                         id="franquicia"
-                        value={newProduct.franquicia}
+                        value={newVenta.franquicia}
                         onChange={handleChange}
                     >
                         <option value="">Selecciona una Franquicia...</option>
@@ -109,11 +109,11 @@ export const CreateProduct = () => {
     };
 
     const renderTasa = () => {
-        if (newProduct.producto !== "Tarjeta de Credito") {
+        if (newVenta.producto !== "Tarjeta de Credito") {
             return (
                 <div>
                     <label className="label4">Tasa</label>
-                    <input type="text" name='tasa' value={newProduct.tasa}
+                    <input type="text" name='tasa' value={newVenta.tasa}
                         onChange={handleChange} placeholder="ingresa tasa" />
                     {errors.tasa && <label>{errors.tasa}</label>}
                 </div>
@@ -126,7 +126,7 @@ export const CreateProduct = () => {
         <div id="ContCrear">
             <div>
                 <label className="label1">Nombre del Producto</label>
-                <select name="producto" id="producto" value={newProduct.producto}
+                <select name="producto" id="producto" value={newVenta.producto}
                     onChange={handleChange}>
                     <option value="">Selecciona un producto...</option>
                     <option value="Credito de Consumo">Crédito de Consumo</option>
@@ -137,7 +137,7 @@ export const CreateProduct = () => {
             </div>
             <div>
                 <label className="label2">Cupo</label>
-                <input type="text" name='cupo' value={newProduct.cupo}
+                <input type="text" name='cupo' value={newVenta.cupo}
                     onChange={handleCupoChange} placeholder="ingresa Cupo" />
                 {errors.cupo && <label>{errors.cupo}</label>}
             </div>

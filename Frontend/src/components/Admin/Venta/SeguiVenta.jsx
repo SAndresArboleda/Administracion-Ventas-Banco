@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import './SeguiProduct.css'
-import { getAllProducts } from "../../../redux/action"
+import './SeguiVenta.css'
+import { getAllVentas } from "../../../redux/action"
 import { FaDeleteLeft } from "react-icons/fa6";
 import { TfiWrite } from "react-icons/tfi";
 
 import { Link } from "react-router-dom"
 
 
-export const SeguiProduct = ({setSettings}) => {
+export const SeguiVenta = ({setSettings}) => {
 
     const dispatch = useDispatch()
-    const allProducts = useSelector((state) => state.allProducts)
+    const allVentas = useSelector((state) => state.allVentas)
 
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        dispatch(getAllVentas())
     }, [dispatch])
 
     return (
@@ -38,7 +38,7 @@ export const SeguiProduct = ({setSettings}) => {
                 </thead>
                 <tbody>
                     {
-                        allProducts?.map((ele, index) => (
+                        allVentas?.map((ele, index) => (
                             <tr key={ele.id} className="table-row">
                                 <td>{index + 1}</td>
                                 <td>{ele.id}</td>
@@ -77,9 +77,9 @@ export const SeguiProduct = ({setSettings}) => {
 //                 <div style={{ width: '5%' }}>Eliminar</div>
 //             </div>
 //             <div className="adminProdScroll">
-//                 {allProducts?.length > 0 ? (
-//                     allProducts?.map((ele, index) => (
-//                         <div className="ProductosAdm" key={ele.id}>
+//                 {allVentas?.length > 0 ? (
+//                     allVentas?.map((ele, index) => (
+//                         <div className="VentaosAdm" key={ele.id}>
 //                             <div style={{ width: '3.5%' }}>{index + 1}</div>
 //                             <div style={{ width: '5%' }}>{ele.id}</div>
 //                             <div style={{ width: '15%' }}>{ele.producto}</div>

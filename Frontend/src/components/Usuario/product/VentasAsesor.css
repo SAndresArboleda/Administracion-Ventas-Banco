@@ -1,4 +1,4 @@
-#ContProductAdm .iconoExit{
+#ContVentaAdm .iconoExit{
     width: 30px;
     height: 30px;
     color: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
@@ -148,9 +148,9 @@
 
 
 
-.adminProducts {
+.adminVentas {
     /* background-color: blueviolet; */
     width: 90%;
-    height: 550px;
+    height: 500px;
     margin-left: 5%;
 }

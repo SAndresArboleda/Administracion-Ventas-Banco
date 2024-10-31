@@ -1,15 +1,15 @@
-import './ProductAdm.css'
+import './AdmiVenta.css'
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { CreateProduct } from "./CreateProduct";
-import { SeguiProduct } from './SeguiProduct';
-import { ModifProduct } from './ModifProduct';
+import { CreateVenta } from "./CreateVenta";
+import { SeguiVenta } from './SeguiVenta';
+import { ModifVenta } from './ModifVenta';
 import { ImExit } from 'react-icons/im';
 
 
 
 
-export const ProductAdm = () => {
+export const VentaAdm = () => {
 
     const [option, setOption] = useState({
         main: true,
@@ -43,7 +43,7 @@ export const ProductAdm = () => {
 
 
     return (
-        <div id='ContProductAdm'>
+        <div id='ContVentaAdm'>
             <div className="navbarSupCont">
                 <Link to='/admin' className='navbarSupLogo'>
                     KCRM-BANCO
@@ -63,10 +63,10 @@ export const ProductAdm = () => {
                 </div>
             </div>
 
-            <div className="adminProducts">
-                {option.main ? <SeguiProduct setSettings={setSettings} /> : null}
-                {option.add ? <CreateProduct /> : null}
-                {option.setting ? <ModifProduct /> : null}
+            <div className="adminVentas">
+                {option.main ? <SeguiVenta setSettings={setSettings} /> : null}
+                {option.add ? <CreateVenta /> : null}
+                {option.setting ? <ModifVenta /> : null}
             </div>
         </div>
     )

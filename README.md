@@ -193,7 +193,7 @@ DB_NAME=banco
     ````code:
     import axios from 'axios'
 
-    export const getAllProducts = () => {
+    export const getAllVentas = () => {
         return async (dispatch) => {
             try {
                 const response = await axios.get(`http://localhost:3003/buscarVenta`);

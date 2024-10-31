@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import './SeguiVentaAsesor.css'
-import { getAllProducts } from "../../../redux/action"
+import { getAllVentas } from "../../../redux/action"
 
-export const SeguiProduct = () => {
+export const SeguiVenta = () => {
 
     const dispatch = useDispatch()
-    const allProducts = useSelector((state) => state.allProducts)
+    const allVentas = useSelector((state) => state.allVentas)
 
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        dispatch(getAllVentas())
     }, [dispatch])
 
 
@@ -28,8 +28,8 @@ export const SeguiProduct = () => {
                 <div style={{ width: '20%' }}>Fecha de Modificación</div>
             </div>
             <div className="adminProdScroll">
-                {allProducts?.length > 0 ? (
-                    allProducts?.map((ele, index) => (
+                {allVentas?.length > 0 ? (
+                    allVentas?.map((ele, index) => (
                         <div className="ProductosAdm" key={ele.id}>
                             <div style={{ width: '3%' }}>{index + 1}</div>
                             <div style={{ width: '5%' }}>{ele.id}</div>
