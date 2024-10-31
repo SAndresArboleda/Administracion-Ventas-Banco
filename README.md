@@ -55,7 +55,6 @@ Nota: En tu base de datos ingresa un usuario como Administrador y otro como Ases
 
 ## Script Base de datos
 ``` code:
-DB_HOST=localhost
 PORT=3003
 DB_NAME=banco
 ```
