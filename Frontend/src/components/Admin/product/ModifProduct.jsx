@@ -59,7 +59,7 @@ export const ModifProduct = () => {
                 updatedAt: new Date().toLocaleString()
             }));
             // Refresca los datos tras la actualización
-            await dispatch(getProductById(product.id)); 
+            await dispatch(getProductById(product.id));
         } catch (error) {
             console.error("Error al actualizar el producto:", error);
         }
@@ -79,43 +79,6 @@ export const ModifProduct = () => {
             setIsLoading(false);
         }
     }, [VentaId]);
-
-
-    const renderFranquicia = () => {
-        if (product.producto === "Tarjeta de Credito") {
-            return (
-                <div>
-                    <label>Franquicia: </label>
-                    <select
-                        name="franquicia"
-                        value={product.franquicia || ""}
-                        onChange={handleChange}
-                    >
-                        <option value="">Selecciona una Franquicia...</option>
-                        <option value="AMEX">Amex</option>
-                        <option value="VISA">Visa</option>
-                        <option value="MASTERCARD">Mastercard</option>
-                    </select>
-                    {/* {errors.franquicia && <label>{errors.franquicia}</label>} */}
-                </div>
-            )
-        }
-        return null;
-    };
-
-    const renderTasa = () => {
-        if (product.producto !== "Tarjeta de Credito") {
-            return (
-                <div>
-                    <label className="label4">Tasa: </label>
-                    <input type="number" name='tasa' value={product.tasa || ""}
-                        onChange={handleChange} placeholder="ingresa tasa" />
-                    {/* {errors.tasa && <label>{errors.tasa}</label>} */}
-                </div>
-            )
-        }
-        return null;
-    };
 
     return (
         <div id="ContModificar">
@@ -159,8 +122,38 @@ export const ModifProduct = () => {
                             onChange={handleChange} placeholder="ingresa Cupo" />
                         {/* {errors.cupo && <label>{errors.cupo}</label>} */}
                     </div>
-                    {renderFranquicia()}
-                    {renderTasa()}
+                    <div>
+                        {/* {
+                            (product.producto === "Tarjeta de Credito") ? */}
+                                <div>
+                                    <label>Franquicia: </label>
+                                    <select
+                                        name="franquicia"
+                                        value={product.franquicia || ""}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Selecciona una Franquicia...</option>
+                                        <option value="AMEX">Amex</option>
+                                        <option value="VISA">Visa</option>
+                                        <option value="MASTERCARD">Mastercard</option>
+                                    </select>
+                                    {/* {errors.franquicia && <label>{errors.franquicia}</label>} */}
+                                </div>
+                        {/* : null
+                        } */}
+                    </div>
+                    <div>
+                        {/* {
+                            (product.producto !== "Tarjeta de Credito") ? */}
+                                <div>
+                                    <label className="label4">Tasa: </label>
+                                    <input type="number" name='tasa' value={product.tasa || ""}
+                                        onChange={handleChange} placeholder="ingresa tasa" />
+                                    {/* {errors.tasa && <label>{errors.tasa}</label>} */}
+                                </div>
+                                {/* : null
+                        } */}
+                    </div>
                     <div>
                         <label htmlFor="usuarioId">Id Asesor de Venta: </label>
                         <span>{product.usuarioId}</span>
@@ -181,6 +174,6 @@ export const ModifProduct = () => {
                 </>
             )
             }
-        </div>
+        </div >
     );
 };
