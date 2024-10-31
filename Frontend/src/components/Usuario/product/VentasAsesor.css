@@ -12,7 +12,7 @@
     padding: 1rem 1rem 1rem 1rem;
     font-family: sans-serif;
     font-weight: 1000;
-    background: linear-gradient(90deg, #00ffff, #ff80c3);
+    background: linear-gradient(90deg, #e2d773, #ead969);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -68,9 +68,9 @@
     font-weight: 100;
     font-size: 18px;
     color: #fff;
-    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    background: linear-gradient(90deg, #009879 0%, #43a793 100%);
     padding: 10px 30px;
-    border: 2px solid #0066cc;
+    border: 2px solid #8daecf;
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
     border-radius: 50px 8px 8px;
     transition: 1000ms;
@@ -83,11 +83,11 @@
 
 .adminOptSeg:hover {
     transition: 1000ms;
-    padding: 10px 25px;
+    padding: 10px 40px;
     transform: translateY(-0px);
-    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    background: linear-gradient(90deg, #009879 0%, #8ae5d3 100%);
     color: #0066cc;
-    border: solid 2px #0066cc;
+    border: solid 2px #8daecf;
 }
 
 .adminOptCrear {
@@ -96,9 +96,9 @@
     font-weight: 100;
     font-size: 18px;
     color: #fff;
-    background: linear-gradient(179deg, #0066CC 0%, #c500cc 100%);
+    background: linear-gradient(179deg, #009879 0%, #8ae5d3 100%);
     padding: 10px 30px;
-    border: 2px solid #0066cc;
+    border: 2px solid #8daecf;
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
     border-radius: 8px;
     transition: 771ms;
@@ -111,11 +111,11 @@
 
 .adminOptCrear:hover {
     transition: 771ms;
-    padding: 10px 21px;
+    padding: 10px 40px;
     transform: translateY(-0px);
-    background: linear-gradient(179deg, #0066CC 0%, #c500cc 100%);
+    background: linear-gradient(179deg, #009879 0%, #8ae5d3 100%);
     color: #0066cc;
-    border: solid 2px #0066cc;
+    border: solid 2px #8daecf;
 }
 
 .adminOptModif {
@@ -124,9 +124,9 @@
     font-weight: 100;
     font-size: 18px;
     color: #fff;
-    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    background: linear-gradient(90deg, #009879 0%, #8ae5d3 100%);
     padding: 10px 30px;
-    border: 2px solid #0066cc;
+    border: 2px solid #8daecf;
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
     border-radius: 8px 50px 8px 8px;
     transition: 1000ms;
@@ -139,11 +139,11 @@
 
 .adminOptModif:hover {
     transition: 1000ms;
-    padding: 10px 21px;
+    padding: 10px 40px;
     transform: translateY(-0px);
-    background: linear-gradient(90deg, #0066CC 0%, #c500cc 100%);
+    background: linear-gradient(90deg, #009879 0%, #8ae5d3 100%);
     color: #0066cc;
-    border: solid 2px #0066cc;
+    border: solid 2px #8daecf;
 }
 
 

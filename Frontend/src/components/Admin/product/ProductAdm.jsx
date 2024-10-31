@@ -1,7 +1,7 @@
 import './ProductAdm.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { CreateProduct} from "./CreateProduct";
+import { CreateProduct } from "./CreateProduct";
 import { SeguiProduct } from './SeguiProduct';
 import { ModifProduct } from './ModifProduct';
 import { ImExit } from 'react-icons/im';
@@ -16,7 +16,7 @@ export const ProductAdm = () => {
         add: false,
         setting: false
     });
-    
+
     const handleClick = (element) => {
         const updatedOptions = {
             main: false,
@@ -25,6 +25,20 @@ export const ProductAdm = () => {
             [element]: true,
         };
         setOption(updatedOptions);
+    };
+    const setSettings = () => {
+        const updatedOptions = {
+            main: false,
+            add: false,
+            setting: true,
+        };
+        setOption(updatedOptions);
+    }
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/');
     };
 
 
@@ -37,7 +51,7 @@ export const ProductAdm = () => {
                 <div className="navbarSupTipos">
                     <div>Productos</div>
                     <Link to='/admin/users'><div>Usuarios</div></Link>
-                    <Link to='/'><ImExit className="iconoExit" /></Link>
+                    <ImExit className="iconoExit" onClick={handleLogout} name='Salir'/>
                 </div>
             </div>
             <div className="adminProdEncabOne">
@@ -50,7 +64,7 @@ export const ProductAdm = () => {
             </div>
 
             <div className="adminProducts">
-                {option.main ? <SeguiProduct /> : null}
+                {option.main ? <SeguiProduct setSettings={setSettings} /> : null}
                 {option.add ? <CreateProduct /> : null}
                 {option.setting ? <ModifProduct /> : null}
             </div>

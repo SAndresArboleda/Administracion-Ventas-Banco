@@ -1,7 +1,7 @@
 const { Venta } = require("../../bd/postgresql");
 
 const crearVenta = async (req, res) => {
-    const { producto, cupo, franquicia, tasa } = req.body;
+    const { producto, cupo, franquicia, tasa, usuarioId } = req.body;
 
     console.log(req.body);
 
@@ -11,7 +11,8 @@ const crearVenta = async (req, res) => {
                 producto,
                 cupo,
                 franquicia: franquicia || null,
-                tasa: tasa || null
+                tasa: tasa || null,
+                usuarioId: usuarioId
             });
             
             return res.status(200).json({

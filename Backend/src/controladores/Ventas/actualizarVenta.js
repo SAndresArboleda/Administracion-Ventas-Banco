@@ -2,16 +2,16 @@ const { Venta } = require("../../bd/postgresql");
 
 const actualizarVenta = async (req, res) => {
     const { id } = req.params;
-    const { producto, cupo, franquicia, tasa } = req.body;
+    const { producto, cupo, franquicia, tasa, usuarioId } = req.body;
 
     try {
         const venta = await Venta.findByPk(id);
         if (!venta) {
-            return res.status(404).json({ msg: `Usuario con id ${id} no existe` });
+            return res.status(404).json({ msg: `Venta con id ${id} no existe` });
         }
 
         const [updated] = await Venta.update(
-            { producto, cupo, franquicia, tasa},
+            { producto, cupo, franquicia, tasa, usuarioId},
             { where: { id: id } }
         );
 

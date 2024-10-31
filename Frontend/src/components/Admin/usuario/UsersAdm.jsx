@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react";
 import { SeguiUser } from "./SeguiUser";
 import { CreateUser } from "./CreateUser";
@@ -25,6 +25,11 @@ export const UsersAdm = () => {
         };
         setOption(update)
     }
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/');
+    };
 
 
     return (
@@ -36,7 +41,7 @@ export const UsersAdm = () => {
                 <div className="navbarSupTipos">
                     <Link to='/admin'><div>Productos</div></Link>
                     <div>Usuarios</div>
-                    <Link to='/'><ImExit className="iconoExit" /></Link>
+                    <ImExit className="iconoExit" onClick={handleLogout} />
                 </div>
             </div>
             <div className="adminProdEncabOne">

@@ -1,59 +1,58 @@
-.ProductosAdm {
-    display: flex;
-    padding-left: 0px;
-    text-align: left;
-    align-content: center;
+#Tabla {
+    margin: 20px;
+    padding: 10px;
+}
 
-}
-.ProductosAdm div{
-    border: 0.2px solid  black;
-    box-sizing: border-box;
-    padding-left: 10px;
-}
-.adminProdScroll{
-    background-color: rgb(107, 120, 144);
-    color: white;
+.styled-table {
     width: 100%;
-    height: 500px;
-    overflow-y: scroll;
-
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
 }
 
-.circuloActivo {
-    font-size: 10px;
-    margin-left: 15px;
-    color: #6bb34c;
-    margin-top: 4px;
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: left;
 }
 
-.circuloInactivo {
-    font-size: 10px;
-    margin-left: 15px;
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.modify-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.modify-link:hover {
+    color: #0056b3;
+}
+
+.delete-icon {
     color: red;
-    margin-top: 4px;
-
+    cursor: pointer;
 }
 
-.adminProdEncabTwo {
-    background-color: rgb(76, 76, 231);
-    width:100%;
-    height: 45px;
-    margin-left: 0%;
-    display: flex;
-    border-radius: 4px 4px 0px 0px;
+.delete-icon:hover {
+    color: darkred;
 }
-
-.acciones{
-    display: flex;
-}
-.adminProdEncabTwo div {
-    align-content: center;
-    text-align: center;
-    font-family: Roboto, sans-serif;
-    font-weight: 100;
-    font-size: 14px;
-    color: #fff;
-    /* border: solid 0.2px black; */
-
-}
-

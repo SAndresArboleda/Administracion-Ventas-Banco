@@ -40,10 +40,17 @@ module.exports = (sequelize) => {
                 max: 99.99
             }
         },
-
-
+        usuarioId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Usuarios',
+                key: 'id'
+            },
+            onDelete: 'CASCADE' // Opcional: Elimina la venta si se elimina el usuario
+        }
     },
-        { timestamps: true },
-        { freezeTableName: true },
-    );
+        { timestamps: true,
+        freezeTableName: true 
+    });
 };

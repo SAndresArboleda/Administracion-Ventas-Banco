@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import './SeguiProduct.css'
+import './SeguiVentaAsesor.css'
 import { getAllProducts } from "../../../redux/action"
 
 export const SeguiProduct = () => {

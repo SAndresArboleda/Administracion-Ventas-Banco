@@ -1,7 +1,7 @@
-import './ProductAdm.css'
+import './VentasAsesor.css'
 import { Link } from "react-router-dom"
-import { SeguiProduct } from './SeguiProduct';
 import { ImExit } from 'react-icons/im';
+import { SeguiProduct } from './SeguiVentaAsesor';
 
 
 

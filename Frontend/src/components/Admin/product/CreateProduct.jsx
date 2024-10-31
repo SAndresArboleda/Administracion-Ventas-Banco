@@ -8,11 +8,16 @@ export const CreateProduct = () => {
 
     const dispatch = useDispatch();
 
+    const storedUser = localStorage.getItem("IdUser");
+    const userStorage = JSON.parse(storedUser);
+    const IdUser = userStorage.usuario.id
+
     const [newProduct, setNewProduct] = useState({
         producto: "",
         cupo: "",
         franquicia: "",
         tasa: "",
+        usuarioId: [IdUser]
     });
 
     const [errors, setErrors] = useState({
@@ -20,7 +25,11 @@ export const CreateProduct = () => {
         cupo: "",
         franquicia: "",
         tasa: "",
+        usuarioId: ""
+
     });
+
+   
 
     useEffect(() => {
         setErrors(validationProduct(newProduct));
@@ -35,32 +44,31 @@ export const CreateProduct = () => {
                 cupo: "",
                 franquicia: "",
                 tasa: "",
+                usuarioId: [IdUser]
             });
             setErrors({
                 producto: "",
                 cupo: "",
                 franquicia: "",
                 tasa: "",
+                usuarioId: ""
+
             });
         }
     };
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
-
         setNewProduct((prevProduct) => {
             let updatedProduct = { ...prevProduct, [name]: value };
-
             if (name === 'producto' && value !== 'Tarjeta de Credito') {
                 updatedProduct.franquicia = '';
             }
             if (name === 'producto' && value === 'Tarjeta de Credito') {
                 updatedProduct.tasa = '';
             }
-
             return updatedProduct;
         });
-
         setErrors(validationProduct({
             ...newProduct,
             [name]: value
@@ -68,13 +76,10 @@ export const CreateProduct = () => {
     };
 
     const handleCupoChange = ({ target }) => {
-
-
         setNewProduct((prevProduct) => ({
             ...prevProduct,
             cupo: target.value
         }));
-
         setErrors(validationProduct({
             ...newProduct,
         }));

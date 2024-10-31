@@ -6,7 +6,7 @@ const ventaModel = require('./modelos/venta');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/banco`,
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/Bank`,
     {
         logging:false,
         native:false,
@@ -26,8 +26,8 @@ ventaModel(sequelize);
 
 const {Usuario,Venta} = sequelize.models;
 
-Usuario.belongsToMany(Venta, {through: 'UsuarioVenta', timestamps: false});
-Venta.belongsToMany(Usuario, {through: 'UsuarioVenta', timestamps: false});
+Usuario.hasMany(Venta,{foreignKey:'usuarioId', sourceKey:'id'});
+Venta.belongsTo(Usuario,{foreignKey:'usuarioId',targetKey:'id'});
 
 
 module.exports = {

@@ -6,8 +6,6 @@ export const login = (user) => {
     return async (dispatch) => {
       try {
         const response = await axios.post(`${URL}/login`, user);
-        console.log(response);
-        
         const data = response.data;
   
         if (data.token) {
@@ -29,7 +27,6 @@ export const login = (user) => {
       }
     };
   };
-
 export const getAllProducts = () => {
     return async (dispatch) => {
         try {
@@ -46,6 +43,54 @@ export const getAllProducts = () => {
         }
     };
 };
+export const postProduct = (payload) => {
+    return async(dispatch)=>{
+        try {
+            const response = await axios.post(`${URL}/crearVenta`,payload);
+            console.log(response);
+            
+            alert("Producto creado correctamente: " + response.data.response.id)
+            return dispatch({
+                type:"POST_PRODUCT",
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error);
+            alert("Producto no creado")
+            
+        }
+    }
+}
+export const getProductById = (id) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${URL}/buscarVenta/${id}`);
+            const data = response.data;
+            dispatch({
+                type: "GET_PRODUCT_ID",
+                payload: data
+            });
+        } catch (error) {
+            console.log(error);
+            alert(error);
+        }
+    };
+};
+export const putVenta =(id,producData) =>{
+    return async (dispatch)=>{
+        try {
+            const response = await axios.put(`${URL}/actualizarVenta/${id}`,producData);
+            const data = response.data;
+            dispatch({
+                type: "PUT_VENTA_ID",
+                payload:data
+            })
+        } catch (error) {
+            console.log("Error al actualizar la venta:", error);
+        }
+    }
+}
+
 export const getAllUsers = () => {
     return async (dispatch) => {
         try {
@@ -61,22 +106,7 @@ export const getAllUsers = () => {
         }
     };
 };
-export const postProduct = (payload) => {
-    return async(dispatch)=>{
-        try {
-            const response = await axios.post(`${URL}/crearVenta`,payload);
-            alert("Producto creado correctamente: " + response.data.response.id)
-            return dispatch({
-                type:"POST_PRODUCT",
-                payload: response.data
-            })
-        } catch (error) {
-            console.log(error);
-            alert("Producto no creado")
-            
-        }
-    }
-}
+
 export const postUser = (payload) => {
     return async(dispatch)=>{
         try {
@@ -95,14 +125,14 @@ export const postUser = (payload) => {
         }
     }
 }
-export const getProductById = (id) => {
+
+export const getUserById = (id) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${URL}/buscarVenta/${id}`);
+            const response = await axios.get(`${URL}/buscarUsuario/${id}`);
             const data = response.data;
-            console.log(response);
             dispatch({
-                type: "GET_PRODUCT_ID",
+                type: "GET_USER_ID",
                 payload: data
             });
         } catch (error) {
@@ -113,6 +143,7 @@ export const getProductById = (id) => {
 };
 
 
+
   
   
 export const LOGIN = "LOGIN"
@@ -121,3 +152,5 @@ export const GET_ALL_USERS = "GET_ALL_USERS"
 export const POST_PRODUCT = "POST_PRODUCT"
 export const POST_USER = "POST_USER"
 export const GET_PRODUCT_ID = "GET_PRODUCT_ID"
+export const GET_USER_ID = "GET_USER_ID"
+export const PUT_VENTA_ID = "PUT_VENTA_ID"

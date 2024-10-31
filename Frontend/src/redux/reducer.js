@@ -5,6 +5,8 @@ import {
     POST_PRODUCT,
     POST_USER,
     GET_PRODUCT_ID,
+    GET_USER_ID,
+    PUT_VENTA_ID,
 
 } from './action'
 
@@ -18,6 +20,7 @@ let initialsState = {
     login: [],
     postproduct: [],
     postUser: [],
+    VentaId: [],
 }
 
 const reducer = (state = initialsState, action) => {
@@ -54,7 +57,17 @@ const reducer = (state = initialsState, action) => {
         case GET_PRODUCT_ID:
             return {
                 ...state,
-                allProducts: action.payload
+                VentaId: action.payload
+            }
+        case GET_USER_ID:
+            return {
+                ...state,
+                allUsers: action.payload
+            }
+        case PUT_VENTA_ID:
+            return {
+                ...state,
+                VentaId: action.payload
             }
 
 

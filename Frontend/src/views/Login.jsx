@@ -28,7 +28,9 @@ export const Login = () => {
         e.preventDefault();
         try {
             const response = await dispatch(login(userData));
-            
+            localStorage.setItem("IdUser", JSON.stringify(response))
+
+
             if (response?.token && isCaptchaValid && response.usuario.tipoUsuario === "Administrador") {
                 navigate('/admin');
             }
