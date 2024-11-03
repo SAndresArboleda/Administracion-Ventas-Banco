@@ -46,7 +46,7 @@ export const CreateUser = () => {
     };
 
     const handleChange = ({ target }) => {
-            setErrors(validationUser({
+        setErrors(validationUser({
             ...newUser
         }));
         setNewUser({
@@ -60,20 +60,20 @@ export const CreateUser = () => {
     return (
         <div id="ContCrearUser">
             <div>
-            <div className="label1">
-                <label>Nombre</label>
-                <input type="text" name='nombre' value={newUser.nombre}
-                    onChange={handleChange} placeholder="ingresa Nombre" />
-            </div>
-            {errors.nombre &&<label className="errorUser">{errors.nombre}</label>}
+                <div className="label1">
+                    <label>Nombre</label>
+                    <input type="text" name='nombre' value={newUser.nombre}
+                        onChange={handleChange} placeholder="ingresa Nombre" />
+                </div>
+                {errors.nombre && <label className="errorUser">{errors.nombre}</label>}
 
             </div>
             <div>
-            <div className="label1">
-                <label>Correo</label>
-                <input type="email" name='correo' value={newUser.correo}
-                    onChange={handleChange} placeholder="ingresa correo" />
-            </div>
+                <div className="label1">
+                    <label>Correo</label>
+                    <input type="email" name='correo' value={newUser.correo}
+                        onChange={handleChange} placeholder="ingresa correo" />
+                </div>
                 {errors.correo && <label>{errors.correo}</label>}
 
             </div>

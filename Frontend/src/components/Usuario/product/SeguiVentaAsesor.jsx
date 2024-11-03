@@ -3,10 +3,14 @@ import { useEffect } from "react"
 import './SeguiVentaAsesor.css'
 import { getAllVentas } from "../../../redux/action"
 
-export const SeguiVenta = () => {
+export const SeguiVentaAsesor = () => {
+    const storedUser = localStorage.getItem("IdUser");
+    const userStorage = JSON.parse(storedUser);
+    const IdUser = userStorage.usuario.id
 
     const dispatch = useDispatch()
     const allVentas = useSelector((state) => state.allVentas)
+    const allVentasUserId = allVentas.filter((venId)=>venId.usuarioId === IdUser )
 
 
     useEffect(() => {
@@ -15,9 +19,51 @@ export const SeguiVenta = () => {
 
 
     return (
+        <div id="Tabla">
+            {
+                allVentas.length > 0 ? (
+                    <table className="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Num</th>
+                                <th>Id</th>
+                                <th>Producto</th>
+                                <th>Cupo</th>
+                                <th>Franquicia</th>
+                                <th>Tasa</th>
+                                <th>Fecha de Venta</th>
+                                <th>Fecha de Modificación</th>
+                                <th>Usuario de Venta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                allVentasUserId.map((ven, index) => (
+                                    <tr key={ven.id} className="table_row">
+                                        <td>{index + 1}</td>
+                                        <td>{ven.id}</td>
+                                        <td>{ven.producto}</td>
+                                        <td>{ven.cupo}</td>
+                                        <td>{ven.franquicia}</td>
+                                        <td>{ven.tasa}</td>
+                                        <td>{new Date(ven.createdAt).toLocaleString()}</td>
+                                        <td>{new Date(ven.updatedAt).toLocaleString()}</td>
+                                        <td>{ven.usuarioId}</td>
+                                    </tr>
+                                ))
+                            }
 
-        <div>
-            <div className="adminProdEncabTwo">
+                        </tbody>
+                    </table>
+                ) : (
+                    <div>No tienes ventas registradas</div>
+                )
+            }
+        </div>
+    )
+}
+
+{/* <div className="adminProdEncabTwo">
                 <div style={{ width: '3%' }}>Num</div>
                 <div style={{ width: '5%' }}>Id</div>
                 <div style={{ width: '15%' }}>Nombre</div>
@@ -44,7 +90,4 @@ export const SeguiVenta = () => {
                 ) : (
                     <div>No hay productos disponibles</div>
                 )}
-            </div>
-        </div>
-    )
-}
+            </div> */}

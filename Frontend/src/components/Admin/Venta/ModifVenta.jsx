@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ModifVenta.css';
 import { IoSearchCircle } from "react-icons/io5";
 
-export const ModifVenta = () => {
+export const ModifVenta = ({ ventaId }) => {
     const dispatch = useDispatch();
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState(ventaId || "");
     const VentaId = useSelector((state) => state.VentaId);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +27,10 @@ export const ModifVenta = () => {
     };
 
     const handleFetch = () => {
-        if (searchTerm.trim() !== "") {
+        if (String(searchTerm).trim() !== "") {
             setIsLoading(true);
             dispatch(getVentaById(searchTerm));
+            setSearchTerm("")
             setError("");
         } else {
             setError("Por favor ingresa un ID para buscar.");
@@ -64,6 +65,14 @@ export const ModifVenta = () => {
             console.error("Error al actualizar el producto:", error);
         }
     };
+
+    useEffect(() => {
+        if (ventaId) {
+            setSearchTerm(String(ventaId));
+            handleFetch(); // Llama a handleFetch para obtener los datos con el nuevo ventaId
+        }
+    }, [ventaId]);
+
     useEffect(() => {
         if (VentaId) {
             setVenta({
@@ -126,40 +135,41 @@ export const ModifVenta = () => {
                             {/* {errors.cupo && <label>{errors.cupo}</label>} */}
                         </div>
                         <div>
-                            {/* {
-                            (product.producto === "Tarjeta de Credito") ? */}
-                            <div className="label1">
-                                <label>Franquicia: </label>
-                                <select
-                                    name="franquicia"
-                                    value={product.franquicia || ""}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">Selecciona una Franquicia...</option>
-                                    <option value="AMEX">Amex</option>
-                                    <option value="VISA">Visa</option>
-                                    <option value="MASTERCARD">Mastercard</option>
-                                </select>
-                                {/* {errors.franquicia && <label>{errors.franquicia}</label>} */}
-                            </div>
-                            {/* : null
-                        } */}
+                            {
+                                (product.producto === "Tarjeta de Credito") ?
+                                    <div className="label1">
+                                        <label>Franquicia: </label>
+                                        <select
+                                            name="franquicia"
+                                            value={product.franquicia || ""}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="">Selecciona una Franquicia...</option>
+                                            <option value="AMEX">Amex</option>
+                                            <option value="VISA">Visa</option>
+                                            <option value="MASTERCARD">Mastercard</option>
+                                        </select>
+                                        {/* {errors.franquicia && <label>{errors.franquicia}</label>} */}
+                                    </div>
+                                    : null
+                            }
                         </div>
                         <div>
-                            {/* {
-                            (product.producto !== "Tarjeta de Credito") ? */}
-                            <div className="label1">
-                                <label>Tasa: </label>
-                                <input type="number" name='tasa' value={product.tasa || ""}
-                                    onChange={handleChange} placeholder="ingresa tasa" />
-                                {/* {errors.tasa && <label>{errors.tasa}</label>} */}
-                            </div>
-                            {/* : null
-                        } */}
+                            {
+                                (product.producto !== "Tarjeta de Credito") ?
+                                    <div className="label1">
+                                        <label>Tasa: </label>
+                                        <input type="number" name='tasa' value={product.tasa || ""}
+                                            onChange={handleChange} placeholder="ingresa tasa" />
+                                        {/* {errors.tasa && <label>{errors.tasa}</label>} */}
+                                    </div>
+                                    : null
+                            }
                         </div>
                         <div className="label1">
                             <label htmlFor="usuarioId">Id Asesor de Venta: </label>
-                            <span>{product.usuarioId}</span>
+                            <input type="text" name="usuarioId" value={product.usuarioId || ""}
+                            onChange={handleChange} placeholder="Ingresar Id Usuario" />
                         </div>
                         <div className="label1">
                             <label htmlFor="createdAt">Fecha de Creación: </label>

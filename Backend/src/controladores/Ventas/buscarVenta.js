@@ -20,4 +20,14 @@ const buscarVentaId =async(req, res)=>{
     }
 }
 
-module.exports = { buscarVentas,buscarVentaId }
+const  buscarVentaIdUser = async (req, res)=>{
+    const {id} = req.params
+    try {
+        const response = await Venta.findAll({where:{usuarioId:id}})
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).send({error: error.message, msg:`id ${id} no existe`})
+    }
+}
+
+module.exports = { buscarVentas,buscarVentaId,buscarVentaIdUser }

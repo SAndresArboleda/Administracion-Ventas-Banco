@@ -1,12 +1,12 @@
-import './VentasAsesor.css'
+import './AsesorVentas.css'
 import { Link } from "react-router-dom"
 import { ImExit } from 'react-icons/im';
-import { SeguiVenta } from './SeguiVentaAsesor';
+import { SeguiVentaAsesor } from './SeguiVentaAsesor';
 
 
 
 
-export const VentasAsesor = () => {
+export const AsesorVentas = () => {
 
     return (
         <div id='ContVentaAdm'>
@@ -15,16 +15,16 @@ export const VentasAsesor = () => {
                     KCRM-BANCO
                 </Link>
                 <div className="navbarSupTipos">
-                    <div>Productos</div>
+                    <Link to="/asesor">Ventas</Link>
+                    <Link to="/asesor/Venta">Crear Venta</Link>
                     <Link to='/'><ImExit className="iconoExit" /></Link>
                 </div>
             </div>
             <div className="adminProdEncabOne">
                 <div className="adminProd">PRODUCTOS</div>
             </div>
-
             <div className="adminVentas">
-                <SeguiVenta />
+                <SeguiVentaAsesor />
             </div>
         </div>
     )

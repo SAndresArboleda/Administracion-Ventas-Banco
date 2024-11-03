@@ -17,6 +17,8 @@ export const VentaAdm = () => {
         setting: false
     });
 
+    const [ventaId, setVentaId] = useState(null);
+
     const handleClick = (element) => {
         const updatedOptions = {
             main: false,
@@ -26,14 +28,11 @@ export const VentaAdm = () => {
         };
         setOption(updatedOptions);
     };
-    const setSettings = () => {
-        const updatedOptions = {
-            main: false,
-            add: false,
-            setting: true,
-        };
-        setOption(updatedOptions);
-    }
+    
+    const setSettings = (id) => {
+        setVentaId(id); // Actualiza el estado ventaId con el ID recibido
+        handleClick("setting");
+    };
 
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -66,7 +65,7 @@ export const VentaAdm = () => {
             <div className="adminVentas">
                 {option.main ? <SeguiVenta setSettings={setSettings} /> : null}
                 {option.add ? <CreateVenta /> : null}
-                {option.setting ? <ModifVenta /> : null}
+                {option.setting ? <ModifVenta ventaId={ventaId}/> : null}
             </div>
         </div>
     )

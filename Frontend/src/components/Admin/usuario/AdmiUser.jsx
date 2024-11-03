@@ -4,17 +4,19 @@ import { SeguiUser } from "./SeguiUser";
 import { CreateUser } from "./CreateUser";
 import { ModifUser } from "./ModifUser";
 import { ImExit } from "react-icons/im";
-import './UsersAdm.css'
+import './AdmiUser.css'
 
 
 
-export const UsersAdm = () => {
+export const AdmiUser = () => {
 
     const [option, setOption] = useState({
         main: true,
         add: false,
         setting: false
     });
+
+    const [userId, setUserId] = useState(null)
 
     const handleClick = (eve) => {
         const update = {
@@ -25,6 +27,12 @@ export const UsersAdm = () => {
         };
         setOption(update)
     }
+
+    const setSettings = (id)=>{
+        setUserId(id);
+        handleClick("setting")
+    }
+
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.clear();
@@ -54,9 +62,9 @@ export const UsersAdm = () => {
             </div>
 
             <div className="adminVentas">
-                {option.main ? < SeguiUser /> : null}
+                {option.main ? < SeguiUser setSettings={setSettings} /> : null}
                 {option.add ? < CreateUser /> : null}
-                {option.setting ? < ModifUser /> : null}
+                {option.setting ? < ModifUser userId ={userId} /> : null}
             </div>
         </div>
     )

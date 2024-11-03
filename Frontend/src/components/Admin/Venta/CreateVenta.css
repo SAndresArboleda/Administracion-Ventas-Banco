@@ -25,6 +25,9 @@
   #ContCrear .label4 {
     padding-inline-end: 126px;
   }
+  #ContCrear .label5 {
+    padding-inline-end: 68px;
+  }
   #ContCrear input{
     width: 178px;
     height: 20px;

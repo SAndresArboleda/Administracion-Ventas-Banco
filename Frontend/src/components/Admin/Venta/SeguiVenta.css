@@ -1,6 +1,8 @@
 #Tabla {
-    margin: 20px;
-    padding: 10px;
+    /* margin: 20px; */
+    /* padding: 10px; */
+    max-height: 580px; /* Ajusta la altura según tus necesidades */
+    overflow-y: auto; /* Activa el scroll vertical */
 }
 
 .styled-table {
@@ -13,6 +15,7 @@
 .styled-table td {
     padding: 12px 15px;
     text-align: left;
+    white-space: nowrap; /* Evita el salto de línea para celdas de una sola línea */
 }
 
 .styled-table thead tr {
@@ -20,8 +23,14 @@
     color: #ffffff;
     text-align: left;
     font-weight: bold;
+    position: sticky;
+    top: 0; /* Fija el encabezado en la parte superior */
+    z-index: 1; /* Asegura que el encabezado esté por encima del contenido de la tabla */
 }
 
+.styled-table tbody {
+    overflow-y: auto; /* Activa el scroll vertical */
+}
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }

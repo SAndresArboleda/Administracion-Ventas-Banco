@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import { postVenta } from "../../../redux/action";
 import { useDispatch } from 'react-redux';
-import './CreateVenta.css';
-import { validationVenta } from "./validation";
+// import './CreateVentaAsesor.css';
+import { validationVenta } from "../../Admin/Venta/validation";
+import { Link } from "react-router-dom";
+import { ImExit } from 'react-icons/im';
 
-export const CreateVenta = () => {
+
+export const CrearVentaAsesor = () => {
 
     const dispatch = useDispatch();
 
-    // const storedUser = localStorage.getItem("IdUser");
-    // const userStorage = JSON.parse(storedUser);
-    // const IdUser = userStorage.usuario.id
+    const storedUser = localStorage.getItem("IdUser");
+    const userStorage = JSON.parse(storedUser);
+    const IdUser = userStorage.usuario.id
 
     const [newVenta, setNewVenta] = useState({
         producto: "",
         cupo: "",
         franquicia: "",
         tasa: "",
-        usuarioId: ""
+        usuarioId: [IdUser]
     });
 
     const [errors, setErrors] = useState({
@@ -29,7 +32,7 @@ export const CreateVenta = () => {
 
     });
 
-   
+
 
     useEffect(() => {
         setErrors(validationVenta(newVenta));
@@ -44,7 +47,7 @@ export const CreateVenta = () => {
                 cupo: "",
                 franquicia: "",
                 tasa: "",
-                usuarioId: ""
+                usuarioId: [IdUser]
             });
             setErrors({
                 producto: "",
@@ -123,36 +126,44 @@ export const CreateVenta = () => {
     };
 
     return (
-        <div id="ContCrear">
-            <div>
-                <label className="label1">Nombre del Producto</label>
-                <select name="producto" id="producto" value={newVenta.producto}
-                    onChange={handleChange}>
-                    <option value="">Selecciona un producto...</option>
-                    <option value="Credito de Consumo">Crédito de Consumo</option>
-                    <option value="Libranza Libre Inversión">Libranza Libre Inversión</option>
-                    <option value="Tarjeta de Credito">Tarjeta de Crédito</option>
-                </select>
-                {errors.producto && <label>{errors.producto}</label>}
+        <div id='ContVentaAdm'>
+             <div className="navbarSupCont">
+                <Link to='/asesor' className='navbarSupLogo'>
+                    KCRM-BANCO
+                </Link>
+                <div className="navbarSupTipos">
+                    <Link to="/asesor">Ventas</Link>
+                    <Link to="/asesor/Venta">Crear Venta</Link>
+                    <Link to='/'><ImExit className="iconoExit" /></Link>
+                </div>
             </div>
-            <div>
-                <label className="label2">Cupo</label>
-                <input type="text" name='cupo' value={newVenta.cupo}
-                    onChange={handleCupoChange} placeholder="ingresa Cupo" />
-                {errors.cupo && <label>{errors.cupo}</label>}
-            </div>
-            {renderFranquicia()}
-            {renderTasa()}
-            <div>
-                <label className="label5">Id de Usuario</label>
-                <input type="text" name='usuarioId' value={newVenta.usuarioId}
-                    onChange={handleChange} placeholder="ingresa Id de Usuario" />
-                {errors.usuarioId && <label>{errors.usuarioId}</label>}
-            </div>
-            <div>
-                <button type="submit" onClick={handleCreation} disabled={Object.keys(errors).length > 0}>
-                    Crear nuevo Producto
-                </button>
+
+            <div id="ContCrear">
+                <div>
+                    <label className="label1">Nombre del Producto</label>
+                    <select name="producto" id="producto" value={newVenta.producto}
+                        onChange={handleChange}>
+                        <option value="">Selecciona un producto...</option>
+                        <option value="Credito de Consumo">Crédito de Consumo</option>
+                        <option value="Libranza Libre Inversión">Libranza Libre Inversión</option>
+                        <option value="Tarjeta de Credito">Tarjeta de Crédito</option>
+                    </select>
+                    {errors.producto && <label>{errors.producto}</label>}
+                </div>
+                <div>
+                    <label className="label2">Cupo</label>
+                    <input type="text" name='cupo' value={newVenta.cupo}
+                        onChange={handleCupoChange} placeholder="ingresa Cupo" />
+                    {errors.cupo && <label>{errors.cupo}</label>}
+                </div>
+                {renderFranquicia()}
+                {renderTasa()}
+
+                <div>
+                    <button type="submit" onClick={handleCreation} disabled={Object.keys(errors).length > 0}>
+                        Crear nueva Venta
+                    </button>
+                </div>
             </div>
         </div>
     );
