@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
             validate:{
                 len: {
                     max: 70,
-                    msg: 'La contraseña debe ser maáximo de 20 caracteres'
+                    msg: 'La contraseña debe ser máximo de 20 caracteres'
                 }
             }
         },

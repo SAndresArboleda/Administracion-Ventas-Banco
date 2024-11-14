@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 const URL = import.meta.env.VITE_URL;
 
 export const login = (user) => {

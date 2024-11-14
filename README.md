@@ -63,13 +63,14 @@ DB_NAME=banco
 ``` code:
 20.11.0
 ```
-### Explicación del código Backend
+# Explicación del código Backend
 
 1. Abrir nuevo repositorio.
 
 2. Creación de carpeta backend e instalación de paquetes, creamos la carpeta y abrimos terminal den carpeta Backend:
     * npm init -y
-    * npm i nodemon -D(colocar "start": "nodemon ./src/index.js"), con D para que quede en la devDependence en packageJson.
+    * node --watch index.js => Forma nueva para mantener corriendo el index.js después de hacer la conexion al puerto. O Tambien se puede hacer:
+       * npm i nodemon -D(colocar "start": "nodemon ./src/index.js"), con D para que quede en la devDependence en packageJson.
     * npm i
     * npm i axios dotenv express morgan nodemon cors
     * npm i pg pg-hstore sequelize (para concexión de mi db)
@@ -96,7 +97,7 @@ DB_NAME=banco
         module.exports = app
         ````
     * Levantamos el servidor ecribiendo en la terminal:
-        * npm start
+        * npm start o nuevo metodo escribir en la : node --watch index.js
 
 4. Creación carpeta base de datos
     * Creamos carpeta modelos
@@ -120,6 +121,16 @@ DB_NAME=banco
         ````
     * Creamos el archivo postgresql.js donde realizamos nuestra conexión a la base de datos y la relación de mis modelos.
     ### Nota: Antes de arrancar la conexión a mi base de datos debo crear mi base de datos en postgresql para que se pueda dar la conexión.
+    ##Ingresando en SQL Shell (psql)
+    ````code:
+    * Ingresamos nuestro datos (si ya estamos logeados solo damos enter y en la password coloco la contraseña de postgresql)
+    postgres=#\l :             vemos las bases de datos creadas
+    postgres=#\q :             para salir de SHELL
+    postgres=#\c "nombre BD" : nos conectamos a la base de datos que necesitamos
+    postgres=#\h :             vemos todos los comandos que podemos usar
+    postgres=# CREATE DATABASE "nombre BD a crear";  : Crear base de datos (colocar ; al terminar)
+    "nombre BD"=#\dt :            Para ver las tablas que tiene la BD
+    ````
 
 5. Creamos las rutas y controladores
     * Creamos en src carpeta Rutas
@@ -142,7 +153,7 @@ DB_NAME=banco
 
 
 
-### Explicación del código Frontend
+# Explicación del código Frontend
 
 1. Creamos la carpeta Frontend
     * En la terminal del proyecto ctrl + ñ:
@@ -177,10 +188,11 @@ DB_NAME=banco
         return (
             <div>
             <Routes>
-                <Route path="/" element="Login" />
-                <Route path="/admin" element="administrador" />
-                <Route path="/admin/users" element="productos y ventas administrador" />
-                <Route path="/asesor" element="ventas Asesor" />
+                <Route path="/" element={Login} />
+                <Route path="/admin" element={AdmiVentas} />
+                <Route path="/admin/users" element={AdminUsuario} />
+                <Route path="/asesor" element={Asesor} />
+                <Route path="/asesor/ventas" element={AsesorVentas} />
             </Routes>
             </div>
         )
@@ -192,47 +204,72 @@ DB_NAME=banco
     1. action.js: Son la única forma de enviar datos desde tu aplicación a la store de Redux.No modifican directamente el estado de la aplicación, sino que proporcionan información que los reducers usarán para actualizar el estado de manera adecuada.
     ````code:
     import axios from 'axios'
+    const URL = import.meta.env.VITE_URL;
 
-    export const getAllVentas = () => {
+    export const login = (user) => {
         return async (dispatch) => {
             try {
-                const response = await axios.get(`http://localhost:3003/buscarVenta`);
+                const response = await axios.post(`${URL}/login`, user);
                 const data = response.data;
-                
+
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                }
                 dispatch({
-                    type: "GET_ALL_PRODUCTS",
-                    payload: data
+                    type: 'LOGIN',
+                    payload: {
+                        user: data.user,
+                        token: data.token
+                    }
                 });
+                return data;
             } catch (error) {
-                console.log(error);
-                alert(error);
+                console.log(error, "Error en el login");
+                alert('Error en correo o contraseña')
+                return (error)
             }
         };
     };
+    export const LOGIN = "LOGIN"
     ````
     
     2. reducer.js: especifica cómo cambia el estado de la aplicación cuando se envían (dispatch) acciones. Este reducer es una función que toma el estado actual y una acción, y devuelve el nuevo estado.
     Importamos el type de la action:
     ````code:
     import {
-        GET_ALL_PRODUCTS
+        LOGIN
     } from './action'
 
     let initialsState = {
-    estado1: [],
-    estado2: [], ...
+    isAuthenticated: false,
+    user: null,
+    token: null,
+    error: null,
+    login: [], 
+    allVentas: [],
+    ...
     }
-    export const reducer = (state = initialsState, action) => {
-        switch (action.type) {
-            case GET_ALL_PRODUCTS:
+    const reducer = (state = initialsState, action) => {
+    switch (action.type) {
+        case LOGIN:
             return {
                 ...state,
-                estado1: action.payload
-            }
+                isAuthenticated: true,
+                user: action.payload.user,
+                token: action.payload.token,
+                error: null
+            };
+        case GET_ALL_PRODUCTS:
+            return {
+                ...state,
+                allVentas: action.payload
+            },
+        ...
         default:
             return state;
         }
     }
+    
     ````
     3. store.js: Donde se guarda el estado global de tu aplicación se importa el reducer. Una store de Redux con capacidades asíncronas (usando thunk) y herramientas de depuración para hacer seguimiento del estado y acciones en el navegador.
     ````code:
@@ -249,8 +286,12 @@ DB_NAME=banco
     ````
     4. Al tener creada nuestra store, la importamos en main.jsx y la agregamos en un Provider para que los componentes dentro de la aplicación puedan acceder al estado global de Redux y despachar acciones sin tener que pasar manualmente el store por props.
     ````code:
-    import {Provider} from 'react-redux'
-    import { store } from './Redux/store.js'
+    import ReactDOM from 'react-dom/client'
+    import App from './App.jsx'
+    import { Provider } from 'react-redux'
+    import React from 'react'
+    import { BrowserRouter } from 'react-router-dom'
+    import { store } from './redux/store.js'
 
     ReactDOM.createRoot(document.getElementById('root')).render(
         <Provider store= {store}>
